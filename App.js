@@ -4,44 +4,37 @@
  * @flow
  */
 
-import React, {Component} from 'react';
+import {StackNavigator} from 'react-navigation';
+import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
 
-// 登录页
-import Login from './src/component/login';
-// 欢迎页
 import Start from './src/component/start';
-// 路由列表
-import Router from './src/router';
+import Login from './src/component/login';
+import Index from './src/component/index';
+import Message from './src/component/message';
 
-export default class App extends Component {
-    constructor() {
-        super();
+export default StackNavigator({
 
-        this.state = {
-            goPage: false,      // 定时跳转
-            isLogin: false       // 是否已经登录
-        }
-    }
+    // 页面路由列表
+    Start: { screen: Start },
+    Login: { screen: Login },
+    Index: { screen: Index },
+    Message: { screen: Message }
 
-    componentDidMount() {
-        // 2秒后跳转
-        setTimeout(() => {
-            this.setState({
-                goPage: true
-            });
-        }, 2000)
-    }
-
-    render() {
-        return (this.state.goPage ?
-            this.state.isLogin ?
-                // 如果已经登录则跳转到首页
-                <Router/> :
-                // 未登录则跳转到登录页
-                <Login/> :
-            // 开场图片
-            <Start/>)
-    }
-}
+}, {
+    initialRouteName: 'Start',         // 默认路由
+    headerMode: 'none',                // 隐藏头部
+    mode: 'modal',                     // 动画效果
+    navigationOptions: {
+        gesturesEnabled: false,
+    },
+    transitionConfig: ()=>({
+        // 1、从右向左：  forHorizontal；
+        // 2、从下向上：  forVertical；
+        // 3、安卓那种的从下向上： forFadeFromBottomAndroid；
+        // 4、无动画：  forInitial。
+        // 只要修改最后的forVertical就可以实现不同的动画了。
+        screenInterpolator: CardStackStyleInterpolator.forHorizontal,
+    })
+});
 
 
