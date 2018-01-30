@@ -6,8 +6,9 @@
 
 import {NavigationActions} from 'react-navigation';
 import React, {Component} from 'react';
+import {getWidth, getHeight} from '../module/getSize';
+
 import {
-    Dimensions,
     StyleSheet,
     View,
     Image
@@ -64,14 +65,17 @@ export default class Start extends Component {
 
             navigation.dispatch(resetAction);
 
-        }, 2000);
+        }, 1000);
     }
 
     render() {
-        const {height, width} = Dimensions.get('window');
+        let width = getWidth(1080);
+        let height = getHeight(1920);
 
-        return (<View style={style.view}>
-            <Image source={require('../assets/images/start.jpg')} style={{width, height}} resizeMode="cover" />
-        </View>)
+        return (
+            <View style={style.view}>
+                <Image source={require('../assets/images/start.jpg')} style={{width, height}} resizeMode="cover"/>
+            </View>
+        )
     }
 }

@@ -10,9 +10,11 @@ import RN, {View, Text, Button} from 'react-native';
 
 export default class Index extends Component {
     render() {
-        return <View style={{flex: 1, backgroundColor: '#eeffee'}}>
-            <Text>Hello World !</Text>
-            <Button title="go message" onPress={() => this.props.navigation.navigate('Message')} />
-        </View>
+        return (
+            <View style={{flex: 1, backgroundColor: '#eeffee'}}>
+                <Text>Hello World !</Text>
+                <Button title="go message" onPress={() => this.props.navigation.navigate('Message')}/>
+            </View>
+        )
     }
 }
