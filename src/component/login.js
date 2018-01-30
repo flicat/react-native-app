@@ -14,11 +14,13 @@ import {
     Text,
     Image,
     TextInput,
-    TouchableOpacity
+    TouchableOpacity,
+    KeyboardAvoidingView
 } from 'react-native';
 
 // TODO 登录方法
-async function userLogin() {
+async function userLogin(param) {
+    console.warn(param);
     return true;
 }
 
@@ -50,7 +52,10 @@ class Form extends Component {
 
     login() {
         // 点击登录
-        userLogin().then(result => {
+        userLogin({
+            username: this.state.username,
+            password: this.state.password,
+        }).then(result => {
             if (result) {
                 this.props.callback();
             }
@@ -62,15 +67,23 @@ class Form extends Component {
             <View style={styles.formWrap}>
                 <View style={styles.formControl}>
                     <Image source={require('../assets/images/icon-user.png')} style={styles.formControlIcon}/>
-                    <TextInput onChangeText={(text) => this.setState({username: text})} value={this.state.username}
-                               placeholder="用户名" style={styles.formControlInput} placeholderTextColor="#999999"
+                    <TextInput onChangeText={(text) => this.setState({username: text})}
+                               value={this.state.username}
+                               placeholder="用户名"
+                               style={styles.formControlInput}
+                               placeholderTextColor="#999999"
                                underlineColorAndroid="transparent"/>
                 </View>
                 <View style={styles.formControl}>
                     <Image source={require('../assets/images/icon-psw.png')} style={styles.formControlIcon}/>
-                    <TextInput onChangeText={(text) => this.setState({password: text})} value={this.state.password}
-                               secureTextEntry={true} placeholder="密码" style={styles.formControlInput}
-                               placeholderTextColor="#999999" underlineColorAndroid="transparent"/>
+                    <TextInput onChangeText={(text) => this.setState({password: text})}
+                               value={this.state.password}
+                               secureTextEntry={true}
+                               keyboardType="ascii-capable"
+                               placeholder="密码"
+                               style={styles.formControlInput}
+                               placeholderTextColor="#999999"
+                               underlineColorAndroid="transparent"/>
                 </View>
                 <TouchableOpacity onPress={() => this.setState({remember: !this.state.remember})}
                                   style={styles.checkBox}>
@@ -114,8 +127,10 @@ export default class Login extends Component {
                 start={{x: 0, y: 0}}
                 end={{x: 0, y: 1}}
                 style={styles.wrap}>
-                <Logo/>
-                <Form callback={this.goIndex}/>
+                <KeyboardAvoidingView behavior="position">
+                    <Logo/>
+                    <Form callback={this.goIndex}/>
+                </KeyboardAvoidingView>
             </LinearGradient>
         )
     }
@@ -140,7 +155,7 @@ const styles = StyleSheet.create({
     },
 
     formWrap: {
-        marginTop: getHeight(100),
+        paddingTop: getHeight(200),
         paddingHorizontal: getWidth(120)
     },
     formControl: {
