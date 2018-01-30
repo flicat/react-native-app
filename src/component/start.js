@@ -7,9 +7,9 @@
 import {NavigationActions} from 'react-navigation';
 import React, {Component} from 'react';
 import {
+    Dimensions,
     StyleSheet,
     View,
-    ImageBackground,
     Image
 } from 'react-native';
 
@@ -25,11 +25,7 @@ const style = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-around',
         alignItems: 'stretch'
-    },
-    bg: {
-        flex: 1,
-        resizeMode: Image.resizeMode.contain
-    },
+    }
 });
 
 export default class Start extends Component {
@@ -72,8 +68,10 @@ export default class Start extends Component {
     }
 
     render() {
+        const {height, width} = Dimensions.get('window');
+
         return (<View style={style.view}>
-            <ImageBackground source={require('../assets/images/start.jpg')} style={style.bg}/>
+            <Image source={require('../assets/images/start.jpg')} style={{width, height}} resizeMode="cover" />
         </View>)
     }
 }

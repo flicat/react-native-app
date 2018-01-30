@@ -6,13 +6,46 @@
 
 import React, {Component} from 'react';
 
-import RN, {View, Text, Button} from 'react-native';
+import RN, {
+    Alert,
+    Button,
+    View
+} from 'react-native';
 
-export default class Index extends Component {
+const styles = {
+    viewPager: {
+        flex: 1
+    },
+    pageStyle: {
+        alignItems: 'center',
+        padding: 20,
+    }
+};
+
+
+export default class Message extends Component {
+    constructor (props) {
+        super(props);
+    }
+
+    alert() {
+        Alert.alert(
+            '',
+            'My Alert Msg',
+            [
+                // {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+                {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: false }
+        )
+    }
+
     render() {
-        return <View style={{flex: 1, backgroundColor: '#eeffee'}}>
-            <Text>消息列表</Text>
-            <Button title="Back" onPress={() => this.props.navigation.goBack()} />
-        </View>
+        return (
+            <View>
+                <Button title="Alert" onPress={() => this.alert()} />
+            </View>
+        );
     }
 }
