@@ -14,7 +14,7 @@ import {
     Text,
     Image,
     TextInput,
-    TouchableOpacity,
+    TouchableWithoutFeedback,
     KeyboardAvoidingView
 } from 'react-native';
 
@@ -85,15 +85,16 @@ class Form extends Component {
                                placeholderTextColor="#999999"
                                underlineColorAndroid="transparent"/>
                 </View>
-                <TouchableOpacity onPress={() => this.setState({remember: !this.state.remember})}
-                                  style={styles.checkBox}>
-                    {
-                        this.state.remember ?
-                            <Image source={require('../assets/images/icon-checked.png')} style={styles.iconCheck}/> :
-                            <Image source={require('../assets/images/icon-checkbox.png')} style={styles.iconCheck}/>
-                    }
-                    <Text style={styles.checkText}>记住密码</Text>
-                </TouchableOpacity>
+                <TouchableWithoutFeedback onPress={() => this.setState({remember: !this.state.remember})}>
+                    <View style={styles.checkBox}>
+                        {
+                            this.state.remember ?
+                                <Image source={require('../assets/images/icon-checked.png')} style={styles.iconCheck}/> :
+                                <Image source={require('../assets/images/icon-checkbox.png')} style={styles.iconCheck}/>
+                        }
+                        <Text style={styles.checkText}>记住密码</Text>
+                    </View>
+                </TouchableWithoutFeedback>
                 <LinearGradient colors={['#078ae5', '#03b3d9']}
                                 start={{x: 0, y: 0}}
                                 end={{x: 1, y: 0}} style={styles.btnWrap}>
