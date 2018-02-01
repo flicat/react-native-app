@@ -7,10 +7,11 @@
 import {StackNavigator} from 'react-navigation';
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
 
-import Start from './src/component/start';
-import Login from './src/component/login';
-import Index from './src/component/index';
-import Message from './src/component/message';
+import Start from './src/module/start';
+import Login from './src/module/login';
+import Index from './src/module/index';
+import Message from './src/module/message';
+import RiverList from './src/module/riverList';
 
 export default StackNavigator({
 
@@ -18,7 +19,8 @@ export default StackNavigator({
     Start: { screen: Start },
     Login: { screen: Login },
     Index: { screen: Index },
-    Message: { screen: Message }
+    Message: { screen: Message },
+    RiverList: { screen: RiverList }
 
 }, {
     initialRouteName: 'Start',         // 默认路由

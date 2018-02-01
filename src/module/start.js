@@ -6,7 +6,7 @@
 
 import {NavigationActions} from 'react-navigation';
 import React, {Component} from 'react';
-import {getWidth, getHeight} from '../module/getSize';
+import {getWidth, getHeight} from '../plugin/getSize';
 
 import {
     StyleSheet,

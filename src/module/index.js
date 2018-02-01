@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {getWidth, getHeight} from '../module/getSize';
+import {getWidth, getHeight} from '../plugin/getSize';
 import {
     StyleSheet,
     View,
@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 
 // 网络错误提示信息
-import NetworkErr from './networkError';
+import NetworkErr from '../component/networkError';
 
 
 // TODO 获取消息
@@ -51,7 +51,8 @@ class Top extends Component {
         return (
             <View style={styles.bannerWrap}>
                 <Image source={require('../assets/images/bg-index.jpg')} style={styles.banner}/>
-                <TouchableHighlight onPress={() => this.props.goUrl('Message')} style={styles.msgBtn}>
+                <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8"
+                                    onPress={() => this.props.goUrl('Message')} style={styles.msgBtn}>
                     {
                         this.state.message ?
                             <Image source={require('../assets/images/icon-msg-active.png')} style={styles.iconMsg}/> :
@@ -72,25 +73,29 @@ class Menu extends Component {
     render() {
         return (
             <View style={styles.firstRow}>
-                <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                    onPress={() => this.props.goUrl('RiverList')}>
                     <View style={styles.columnItem}>
                         <Image source={require('../assets/images/icon-i-1.png')} style={styles.columnIcon}/>
                         <Text style={styles.columnText}>河道信息</Text>
                     </View>
                 </TouchableHighlight>
-                <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                    onPress={() => this.props.goUrl('Message')}>
                     <View style={styles.columnItem}>
                         <Image source={require('../assets/images/icon-i-2.png')} style={styles.columnIcon}/>
                         <Text style={styles.columnText}>巡河汇总</Text>
                     </View>
                 </TouchableHighlight>
-                <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                    onPress={() => this.props.goUrl('Message')}>
                     <View style={styles.columnItem}>
                         <Image source={require('../assets/images/icon-i-3.png')} style={styles.columnIcon}/>
                         <Text style={styles.columnText}>事件统计</Text>
                     </View>
                 </TouchableHighlight>
-                <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                    onPress={() => this.props.goUrl('Message')}>
                     <View style={styles.columnItem}>
                         <Image source={require('../assets/images/icon-i-4.png')} style={styles.columnIcon}/>
                         <Text style={styles.columnText}>综合考核</Text>
@@ -114,25 +119,29 @@ class App extends Component {
                     <Text style={styles.titleText}>常用应用</Text>
                 </View>
                 <View style={styles.row}>
-                    <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                    <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                        onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
                             <Image source={require('../assets/images/icon-i-5.png')} style={styles.columnIcon}/>
                             <Text style={styles.columnText}>开始巡河</Text>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                    <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                        onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
                             <Image source={require('../assets/images/icon-i-6.png')} style={styles.columnIcon}/>
                             <Text style={styles.columnText}>排污口信息</Text>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                    <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                        onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
                             <Image source={require('../assets/images/icon-i-7.png')} style={styles.columnIcon}/>
                             <Text style={styles.columnText}>快速上报</Text>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                    <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                        onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
                             <Image source={require('../assets/images/icon-i-8.png')} style={styles.columnIcon}/>
                             <Text style={styles.columnText}>地理信息</Text>
@@ -140,25 +149,29 @@ class App extends Component {
                     </TouchableHighlight>
                 </View>
                 <View style={styles.row}>
-                    <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                    <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                        onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
                             <Image source={require('../assets/images/icon-i-9.png')} style={styles.columnIcon}/>
                             <Text style={styles.columnText}>热点信息</Text>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                    <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                        onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
                             <Image source={require('../assets/images/icon-i-10.png')} style={styles.columnIcon}/>
                             <Text style={styles.columnText}>河长名录</Text>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                    <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                        onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
                             <Image source={require('../assets/images/icon-i-11.png')} style={styles.columnIcon}/>
                             <Text style={styles.columnText}>我的事件</Text>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                    <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                        onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
                             <Image source={require('../assets/images/icon-i-12.png')} style={styles.columnIcon}/>
                             <Text style={styles.columnText}>我的河道</Text>
@@ -166,25 +179,29 @@ class App extends Component {
                     </TouchableHighlight>
                 </View>
                 <View style={styles.row}>
-                    <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                    <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                        onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
                             <Image source={require('../assets/images/icon-i-13.png')} style={styles.columnIcon}/>
                             <Text style={styles.columnText}>我的日志</Text>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                    <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                        onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
                             <Image source={require('../assets/images/icon-i-14.png')} style={styles.columnIcon}/>
                             <Text style={styles.columnText}>个人信息</Text>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                    <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                        onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
                             <Image source={require('../assets/images/icon-i-15.png')} style={styles.columnIcon}/>
                             <Text style={styles.columnText}>事件管理</Text>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight style={styles.column} onPress={() => this.props.goUrl('Message')}>
+                    <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
+                                        onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
                             <Image source={require('../assets/images/icon-i-16.png')} style={styles.columnIcon}/>
                             <Text style={styles.columnText}>巡河管理</Text>
@@ -297,9 +314,9 @@ const styles = StyleSheet.create({
         borderLeftColor: '#4ea8eb',
         paddingLeft: getWidth(20),
         color: '#333',
-        height: getWidth(38),
-        lineHeight: getWidth(42),
-        fontSize: getWidth(38)
+        height: getWidth(42),
+        lineHeight: getWidth(44),
+        fontSize: getWidth(42)
     }
 
 });

@@ -1,7 +1,7 @@
 /*!
  * @author liyuelong1020@gmail.com
  * @date 2018/1/31 031
- * @description 网络错误提示信息
+ * @description loading遮罩
  */
 
 import React, {Component} from 'react';
