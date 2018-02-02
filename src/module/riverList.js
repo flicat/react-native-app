@@ -13,6 +13,7 @@ import {
     Text,
     Image,
     SectionList,
+    ImageBackground,
     TouchableHighlight,
     TouchableOpacity,
     TouchableWithoutFeedback
@@ -308,6 +309,7 @@ class RiverMenu extends Component {
         return (
             <View style={styles.riverMenu}>
                 <SectionList
+                    initialNumToRender={15}
                     sections={[{data: this.state.rivers}]}
                     keyExtractor={item => item.id}
                     renderItem={({item}) => (
@@ -427,17 +429,18 @@ class List extends Component {
     render() {
         return (
             <SectionList
+                initialNumToRender={10}
                 sections={[{data: this.state.list}]}
                 keyExtractor={item => item.id}
                 renderItem={({item}) => (
 
                     item.sub && item.sub.length ?
                         <View>
-                            {this.state.openTag[item.id] ?
-                                <Image source={require('../assets/images/icon-reduce.png')}
-                                       style={styles.riverIcon}/> :
-                                <Image source={require('../assets/images/icon-plus.png')}
-                                       style={styles.riverIcon}/>}
+                            <ImageBackground style={styles.riverIconWrap}
+                                             source={this.state.openTag[item.id] ? require('../assets/images/icon-reduce.png') : require('../assets/images/icon-plus.png')}>
+                                <View style={styles.riverIcon}/>
+                            </ImageBackground>
+
 
                             <TouchableOpacity activeOpacity={1} onPress={() => this.toggleItem(item.id)}>
                                 <View style={styles.riverItem}>
@@ -446,8 +449,8 @@ class List extends Component {
                                         {
                                             item.riverer &&
                                             <Text style={styles.riverer}>
-                                                <Text>{item.riverer.name} | </Text>
-                                                {item.riverer.title.map(title => <Text>{title} | </Text>)}
+                                                <Text>{item.riverer.name}</Text>
+                                                {item.riverer.title.map(title => <Text> | {title}</Text>)}
                                             </Text>
                                         }
                                     </View>
@@ -456,13 +459,10 @@ class List extends Component {
                                     </TouchableOpacity>
                                 </View>
                             </TouchableOpacity>
-                            {
-                                this.state.openTag[item.id] &&
-                                <SectionList
-                                    style={this.state.openTag[item.id] ? {} : {height: 0}}
-                                    sections={[{data: item.sub}]}
-                                    keyExtractor={item => item.id}
-                                    renderItem={({item}) => (
+                            <View>
+                                {
+                                    this.state.openTag[item.id] &&
+                                    item.sub.map(item => (
                                         <TouchableOpacity activeOpacity={1} onPress={() => this.goInfo(item.id)}>
                                             <View style={styles.riverItem}>
                                                 <View>
@@ -470,16 +470,16 @@ class List extends Component {
                                                     {
                                                         item.riverer &&
                                                         <Text style={styles.riverer}>
-                                                            <Text>{item.riverer.name} | </Text>
-                                                            {item.riverer.title.map(title => <Text>{title} | </Text>)}
+                                                            <Text>{item.riverer.name}</Text>
+                                                            {item.riverer.title.map(title => <Text> | {title}</Text>)}
                                                         </Text>
                                                     }
                                                 </View>
                                                 <Text style={styles.listItemBtn}>详情</Text>
                                             </View>
-                                        </TouchableOpacity>
-                                    )}/>
-                            }
+                                        </TouchableOpacity>))
+                                }
+                            </View>
                         </View> :
                         <TouchableOpacity activeOpacity={1}>
                             <View style={styles.riverItem}>
@@ -488,8 +488,8 @@ class List extends Component {
                                     {
                                         item.riverer &&
                                         <Text style={styles.riverer}>
-                                            <Text>{item.riverer.name} | </Text>
-                                            {item.riverer.title.map(title => <Text>{title} | </Text>)}
+                                            <Text>{item.riverer.name}</Text>
+                                            {item.riverer.title.map(title => <Text> | {title}</Text>)}
                                         </Text>
                                     }
                                 </View>
@@ -810,12 +810,17 @@ const styles = StyleSheet.create({
         fontSize: getWidth(34),
         color: '#acacac',
     },
-    riverIcon: {
+    riverIconWrap: {
         position: 'absolute',
         left: 0,
         top: getWidth(58),
         width: getWidth(67),
         height: getWidth(67),
+        borderRadius: 1,
         resizeMode: 'contain'
+    },
+    riverIcon: {
+        width: getWidth(67),
+        height: getWidth(67),
     }
 });

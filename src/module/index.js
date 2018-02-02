@@ -12,6 +12,7 @@ import {
     Text,
     Image,
     ScrollView,
+    ImageBackground,
     TouchableHighlight
 } from 'react-native';
 
@@ -21,7 +22,7 @@ import NetworkErr from '../component/networkError';
 
 // TODO 获取消息
 async function getMsg() {
-    let data = await new Promise(function (resolve, reject) {
+    await new Promise(function (resolve, reject) {
         setTimeout(() => {
             resolve(true);
         }, 2000)
@@ -53,11 +54,10 @@ class Top extends Component {
                 <Image source={require('../assets/images/bg-index.jpg')} style={styles.banner}/>
                 <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8"
                                     onPress={() => this.props.goUrl('Message')} style={styles.msgBtn}>
-                    {
-                        this.state.message ?
-                            <Image source={require('../assets/images/icon-msg-active.png')} style={styles.iconMsg}/> :
-                            <Image source={require('../assets/images/icon-msg.png')} style={styles.iconMsg}/>
-                    }
+                    <ImageBackground style={styles.iconMsgBg}
+                                     source={this.state.message ? require('../assets/images/icon-msg-active.png') : require('../assets/images/icon-msg.png')}>
+                        <View style={styles.iconMsg}/>
+                    </ImageBackground>
                 </TouchableHighlight>
             </View>
         )
@@ -262,10 +262,14 @@ const styles = StyleSheet.create({
         right: 0,
         top: 0
     },
-    iconMsg: {
+    iconMsgBg: {
         width: getWidth(63),
         height: getWidth(54),
         resizeMode: 'contain'
+    },
+    iconMsg: {
+        width: getWidth(63),
+        height: getWidth(54)
     },
 
 

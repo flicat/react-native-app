@@ -14,13 +14,18 @@ import {
     Text,
     Image,
     TextInput,
+    ImageBackground,
     TouchableWithoutFeedback,
     KeyboardAvoidingView
 } from 'react-native';
 
 // TODO 登录方法
 async function userLogin(param) {
-    console.warn(param);
+    await new Promise(function (resolve, reject) {
+        setTimeout(() => {
+            resolve(true);
+        }, 1000)
+    });
     return true;
 }
 
@@ -87,11 +92,10 @@ class Form extends Component {
                 </View>
                 <TouchableWithoutFeedback onPress={() => this.setState({remember: !this.state.remember})}>
                     <View style={styles.checkBox}>
-                        {
-                            this.state.remember ?
-                                <Image source={require('../assets/images/icon-checked.png')} style={styles.iconCheck}/> :
-                                <Image source={require('../assets/images/icon-checkbox.png')} style={styles.iconCheck}/>
-                        }
+                        <ImageBackground style={styles.iconCheckBg}
+                                         source={this.state.remember ? require('../assets/images/icon-checked.png') : require('../assets/images/icon-checkbox.png')}>
+                            <View style={styles.iconCheck}/>
+                        </ImageBackground>
                         <Text style={styles.checkText}>记住密码</Text>
                     </View>
                 </TouchableWithoutFeedback>
@@ -189,8 +193,12 @@ const styles = StyleSheet.create({
         marginTop: getWidth(37),
         marginBottom: getWidth(131)
     },
-    iconCheck: {
+    iconCheckBg: {
         resizeMode: 'contain',
+        width: getWidth(44),
+        height: getWidth(44)
+    },
+    iconCheck: {
         width: getWidth(44),
         height: getWidth(44)
     },
