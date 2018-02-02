@@ -7,22 +7,24 @@
 import React, {Component} from 'react';
 import {getWidth, getHeight} from '../plugin/getSize';
 import {
-    Platform,
-    Linking,
-    NetInfo,
     StyleSheet,
     View,
     Text,
-    Image,
-    TouchableWithoutFeedback
+    ImageBackground
 } from 'react-native';
 
 
-export default class NetworkError extends Component {
+export default class Empty extends Component {
+    constructor(props) {
+        super(props);
+    }
     render () {
         return (
             <View style={styles.wrap}>
-
+                <ImageBackground style={styles.emptyBg} source={require('../assets/images/bg-empty.png')}  resizeMode="contain">
+                    <View style={styles.emptyBg}/>
+                </ImageBackground>
+                <Text>暂无相关数据</Text>
             </View>
         );
     }
@@ -31,13 +33,11 @@ export default class NetworkError extends Component {
 const styles = StyleSheet.create({
     wrap: {
         flex: 1,
-        width: getWidth(1080),
-        height: getWidth(138),
-        paddingLeft: getWidth(37),
-        paddingRight: getWidth(30),
-        backgroundColor: '#fddbd9',
-        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'center'
+    },
+    emptyBg: {
+        width: getWidth(430),
+        height: getWidth(421)
     }
 });

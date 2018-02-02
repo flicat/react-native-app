@@ -30,11 +30,10 @@ export default StackNavigator({
         gesturesEnabled: false,
     },
     transitionConfig: ()=>({
-        // 1、从右向左：  forHorizontal；
-        // 2、从下向上：  forVertical；
-        // 3、安卓那种的从下向上： forFadeFromBottomAndroid；
-        // 4、无动画：  forInitial。
-        // 只要修改最后的forVertical就可以实现不同的动画了。
+        // 从右向左：  forHorizontal；
+        // 从下向上：  forVertical；
+        // 安卓那种的从下向上： forFadeFromBottomAndroid；
+        // 无动画：  forInitial。
         screenInterpolator: CardStackStyleInterpolator.forHorizontal,
     })
 });

@@ -51,12 +51,14 @@ class Top extends Component {
     render() {
         return (
             <View style={styles.bannerWrap}>
-                <Image source={require('../assets/images/bg-index.jpg')} style={styles.banner}/>
+                <Image source={require('../assets/images/bg-index.jpg')} style={styles.banner} resizeMode="contain"/>
                 <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8"
                                     onPress={() => this.props.goUrl('Message')} style={styles.msgBtn}>
-                    <ImageBackground style={styles.iconMsgBg}
-                                     source={this.state.message ? require('../assets/images/icon-msg-active.png') : require('../assets/images/icon-msg.png')}>
-                        <View style={styles.iconMsg}/>
+                    <ImageBackground
+                        style={styles.iconMsgBg}
+                        resizeMode="contain"
+                        source={this.state.message ? require('../assets/images/icon-msg-active.png') : require('../assets/images/icon-msg.png')}>
+                        <View style={styles.iconMsgBg}/>
                     </ImageBackground>
                 </TouchableHighlight>
             </View>
@@ -76,28 +78,28 @@ class Menu extends Component {
                 <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                     onPress={() => this.props.goUrl('RiverList')}>
                     <View style={styles.columnItem}>
-                        <Image source={require('../assets/images/icon-i-1.png')} style={styles.columnIcon}/>
+                        <Image source={require('../assets/images/icon-i-1.png')} style={styles.columnIcon} resizeMode="contain"/>
                         <Text style={styles.columnText}>河道信息</Text>
                     </View>
                 </TouchableHighlight>
                 <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                     onPress={() => this.props.goUrl('Message')}>
                     <View style={styles.columnItem}>
-                        <Image source={require('../assets/images/icon-i-2.png')} style={styles.columnIcon}/>
+                        <Image source={require('../assets/images/icon-i-2.png')} style={styles.columnIcon} resizeMode="contain"/>
                         <Text style={styles.columnText}>巡河汇总</Text>
                     </View>
                 </TouchableHighlight>
                 <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                     onPress={() => this.props.goUrl('Message')}>
                     <View style={styles.columnItem}>
-                        <Image source={require('../assets/images/icon-i-3.png')} style={styles.columnIcon}/>
+                        <Image source={require('../assets/images/icon-i-3.png')} style={styles.columnIcon} resizeMode="contain"/>
                         <Text style={styles.columnText}>事件统计</Text>
                     </View>
                 </TouchableHighlight>
                 <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                     onPress={() => this.props.goUrl('Message')}>
                     <View style={styles.columnItem}>
-                        <Image source={require('../assets/images/icon-i-4.png')} style={styles.columnIcon}/>
+                        <Image source={require('../assets/images/icon-i-4.png')} style={styles.columnIcon} resizeMode="contain"/>
                         <Text style={styles.columnText}>综合考核</Text>
                     </View>
                 </TouchableHighlight>
@@ -122,28 +124,28 @@ class App extends Component {
                     <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                         onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
-                            <Image source={require('../assets/images/icon-i-5.png')} style={styles.columnIcon}/>
+                            <Image source={require('../assets/images/icon-i-5.png')} style={styles.columnIcon} resizeMode="contain"/>
                             <Text style={styles.columnText}>开始巡河</Text>
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                         onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
-                            <Image source={require('../assets/images/icon-i-6.png')} style={styles.columnIcon}/>
+                            <Image source={require('../assets/images/icon-i-6.png')} style={styles.columnIcon} resizeMode="contain"/>
                             <Text style={styles.columnText}>排污口信息</Text>
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                         onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
-                            <Image source={require('../assets/images/icon-i-7.png')} style={styles.columnIcon}/>
+                            <Image source={require('../assets/images/icon-i-7.png')} style={styles.columnIcon} resizeMode="contain"/>
                             <Text style={styles.columnText}>快速上报</Text>
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                         onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
-                            <Image source={require('../assets/images/icon-i-8.png')} style={styles.columnIcon}/>
+                            <Image source={require('../assets/images/icon-i-8.png')} style={styles.columnIcon} resizeMode="contain"/>
                             <Text style={styles.columnText}>地理信息</Text>
                         </View>
                     </TouchableHighlight>
@@ -152,28 +154,28 @@ class App extends Component {
                     <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                         onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
-                            <Image source={require('../assets/images/icon-i-9.png')} style={styles.columnIcon}/>
+                            <Image source={require('../assets/images/icon-i-9.png')} style={styles.columnIcon} resizeMode="contain"/>
                             <Text style={styles.columnText}>热点信息</Text>
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                         onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
-                            <Image source={require('../assets/images/icon-i-10.png')} style={styles.columnIcon}/>
+                            <Image source={require('../assets/images/icon-i-10.png')} style={styles.columnIcon} resizeMode="contain"/>
                             <Text style={styles.columnText}>河长名录</Text>
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                         onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
-                            <Image source={require('../assets/images/icon-i-11.png')} style={styles.columnIcon}/>
+                            <Image source={require('../assets/images/icon-i-11.png')} style={styles.columnIcon} resizeMode="contain"/>
                             <Text style={styles.columnText}>我的事件</Text>
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                         onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
-                            <Image source={require('../assets/images/icon-i-12.png')} style={styles.columnIcon}/>
+                            <Image source={require('../assets/images/icon-i-12.png')} style={styles.columnIcon} resizeMode="contain"/>
                             <Text style={styles.columnText}>我的河道</Text>
                         </View>
                     </TouchableHighlight>
@@ -182,28 +184,28 @@ class App extends Component {
                     <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                         onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
-                            <Image source={require('../assets/images/icon-i-13.png')} style={styles.columnIcon}/>
+                            <Image source={require('../assets/images/icon-i-13.png')} style={styles.columnIcon} resizeMode="contain"/>
                             <Text style={styles.columnText}>我的日志</Text>
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                         onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
-                            <Image source={require('../assets/images/icon-i-14.png')} style={styles.columnIcon}/>
+                            <Image source={require('../assets/images/icon-i-14.png')} style={styles.columnIcon} resizeMode="contain"/>
                             <Text style={styles.columnText}>个人信息</Text>
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                         onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
-                            <Image source={require('../assets/images/icon-i-15.png')} style={styles.columnIcon}/>
+                            <Image source={require('../assets/images/icon-i-15.png')} style={styles.columnIcon} resizeMode="contain"/>
                             <Text style={styles.columnText}>事件管理</Text>
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
                                         onPress={() => this.props.goUrl('Message')}>
                         <View style={styles.columnItem}>
-                            <Image source={require('../assets/images/icon-i-16.png')} style={styles.columnIcon}/>
+                            <Image source={require('../assets/images/icon-i-16.png')} style={styles.columnIcon} resizeMode="contain"/>
                             <Text style={styles.columnText}>巡河管理</Text>
                         </View>
                     </TouchableHighlight>
@@ -253,7 +255,6 @@ const styles = StyleSheet.create({
     banner: {
         width: getWidth(1080),
         height: getWidth(536),
-        resizeMode: 'contain'
     },
     msgBtn: {
         position: 'absolute',
@@ -265,11 +266,6 @@ const styles = StyleSheet.create({
     iconMsgBg: {
         width: getWidth(63),
         height: getWidth(54),
-        resizeMode: 'contain'
-    },
-    iconMsg: {
-        width: getWidth(63),
-        height: getWidth(54)
     },
 
 
@@ -297,7 +293,6 @@ const styles = StyleSheet.create({
     columnIcon: {
         width: getWidth(102),
         height: getWidth(85),
-        resizeMode: 'contain'
     },
     columnText: {
         marginTop: getWidth(26),

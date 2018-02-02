@@ -35,7 +35,7 @@ class Logo extends Component {
     render() {
         return (
             <View style={styles.bannerWrap}>
-                <Image source={require('../assets/images/bg-login.png')} style={styles.banner}/>
+                <Image source={require('../assets/images/bg-login.png')} style={styles.banner} resizeMode="contain"/>
             </View>
         )
     }
@@ -71,7 +71,7 @@ class Form extends Component {
         return (
             <View style={styles.formWrap}>
                 <View style={styles.formControl}>
-                    <Image source={require('../assets/images/icon-user.png')} style={styles.formControlIcon}/>
+                    <Image source={require('../assets/images/icon-user.png')} style={styles.formControlIcon} resizeMode="contain"/>
                     <TextInput onChangeText={(text) => this.setState({username: text})}
                                value={this.state.username}
                                placeholder="用户名"
@@ -80,7 +80,7 @@ class Form extends Component {
                                underlineColorAndroid="transparent"/>
                 </View>
                 <View style={styles.formControl}>
-                    <Image source={require('../assets/images/icon-psw.png')} style={styles.formControlIcon}/>
+                    <Image source={require('../assets/images/icon-psw.png')} style={styles.formControlIcon} resizeMode="contain"/>
                     <TextInput onChangeText={(text) => this.setState({password: text})}
                                value={this.state.password}
                                secureTextEntry={true}
@@ -92,9 +92,11 @@ class Form extends Component {
                 </View>
                 <TouchableWithoutFeedback onPress={() => this.setState({remember: !this.state.remember})}>
                     <View style={styles.checkBox}>
-                        <ImageBackground style={styles.iconCheckBg}
-                                         source={this.state.remember ? require('../assets/images/icon-checked.png') : require('../assets/images/icon-checkbox.png')}>
-                            <View style={styles.iconCheck}/>
+                        <ImageBackground
+                            resizeMode="contain"
+                            style={styles.iconCheckBg}
+                            source={this.state.remember ? require('../assets/images/icon-checked.png') : require('../assets/images/icon-checkbox.png')}>
+                            <View style={styles.iconCheckBg}/>
                         </ImageBackground>
                         <Text style={styles.checkText}>记住密码</Text>
                     </View>
@@ -152,7 +154,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: getWidth(120)
     },
     banner: {
-        resizeMode: 'contain',
         width: getWidth(621),
         height: getHeight(299),
         alignSelf: 'center',
@@ -177,7 +178,6 @@ const styles = StyleSheet.create({
         marginVertical: getWidth(14),
         marginLeft: getWidth(14),
         marginRight: getWidth(28),
-        resizeMode: 'contain'
     },
     formControlInput: {
         flex: 1,
@@ -194,11 +194,6 @@ const styles = StyleSheet.create({
         marginBottom: getWidth(131)
     },
     iconCheckBg: {
-        resizeMode: 'contain',
-        width: getWidth(44),
-        height: getWidth(44)
-    },
-    iconCheck: {
         width: getWidth(44),
         height: getWidth(44)
     },

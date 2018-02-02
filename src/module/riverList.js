@@ -19,11 +19,16 @@ import {
     TouchableWithoutFeedback
 } from 'react-native';
 
+
 // 网络错误提示信息
 import NetworkErr from '../component/networkError';
-
 // 头部导航
 import TopNav from '../component/topNav';
+// 列表为空
+import Empty from '../component/empty';
+// loading遮罩
+import FullLoading from '../component/fullLoading';
+
 
 // TODO 获取列表
 async function getList(param) {
@@ -364,7 +369,7 @@ class Menu extends Component {
                             <Text style={this.state.type === 'area' ? styles.navTextActive : styles.navText}>按区域</Text>
                             {
                                 this.state.type === 'area' &&
-                                <Image style={styles.navIcon} source={require('../assets/images/icon-arrow-down.png')}/>
+                                <Image style={styles.navIcon} resizeMode="contain" source={require('../assets/images/icon-arrow-down.png')}/>
                             }
                         </View>
                     </TouchableWithoutFeedback>
@@ -373,7 +378,7 @@ class Menu extends Component {
                             <Text style={this.state.type === 'river' ? styles.navTextActive : styles.navText}>按河道</Text>
                             {
                                 this.state.type === 'river' &&
-                                <Image style={styles.navIcon} source={require('../assets/images/icon-arrow-down.png')}/>
+                                <Image style={styles.navIcon} resizeMode="contain" source={require('../assets/images/icon-arrow-down.png')}/>
                             }
                         </View>
                     </TouchableWithoutFeedback>
@@ -388,7 +393,6 @@ class Menu extends Component {
                         </TouchableWithoutFeedback>
                     </View>
                 }
-
             </View>
         )
     }
@@ -400,6 +404,7 @@ class List extends Component {
         super(props);
 
         this.state = {
+            isReady: false,
             openTag: {},        // 当前打开的标签id
             list: []
         }
@@ -408,7 +413,8 @@ class List extends Component {
     componentDidMount() {
         getList().then(list => {
             this.setState({
-                list
+                list: list,
+                isReady: true
             });
         })
     }
@@ -428,23 +434,68 @@ class List extends Component {
 
     render() {
         return (
-            <SectionList
-                initialNumToRender={10}
-                sections={[{data: this.state.list}]}
-                keyExtractor={item => item.id}
-                renderItem={({item}) => (
+            !this.state.isReady ?
+                <FullLoading/> :
+                this.state.list && this.state.list.length ?
+                <SectionList
+                    initialNumToRender={10}
+                    sections={[{data: this.state.list}]}
+                    keyExtractor={item => item.id}
+                    renderItem={({item}) => (
 
-                    item.sub && item.sub.length ?
-                        <View>
-                            <ImageBackground style={styles.riverIconWrap}
-                                             source={this.state.openTag[item.id] ? require('../assets/images/icon-reduce.png') : require('../assets/images/icon-plus.png')}>
-                                <View style={styles.riverIcon}/>
-                            </ImageBackground>
+                        item.sub && item.sub.length ?
+                            <View>
+                                <ImageBackground
+                                    resizeMode="contain"
+                                    style={styles.riverIconWrap}
+                                    source={this.state.openTag[item.id] ? require('../assets/images/icon-reduce.png') : require('../assets/images/icon-plus.png')}>
+                                    <View style={styles.riverIcon}/>
+                                </ImageBackground>
 
 
-                            <TouchableOpacity activeOpacity={1} onPress={() => this.toggleItem(item.id)}>
+                                <TouchableOpacity activeOpacity={1} onPress={() => this.toggleItem(item.id)}>
+                                    <View style={styles.riverItem}>
+                                        <View style={{flex: 1}}>
+                                            <Text style={styles.riverName}>{item.name}</Text>
+                                            {
+                                                item.riverer &&
+                                                <Text style={styles.riverer}>
+                                                    <Text>{item.riverer.name}</Text>
+                                                    {item.riverer.title.map(title => <Text> | {title}</Text>)}
+                                                </Text>
+                                            }
+                                        </View>
+                                        <TouchableOpacity activeOpacity={1} onPress={() => this.goInfo(item.id)}>
+                                            <Text style={styles.listItemBtn}>详情</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                </TouchableOpacity>
+                                <View>
+                                    {
+                                        this.state.openTag[item.id] &&
+                                        item.sub.map(item => (
+                                            <TouchableOpacity activeOpacity={1} onPress={() => this.goInfo(item.id)}>
+                                                <View style={styles.riverItem}>
+                                                    <View>
+                                                        <Text style={styles.riverName}>{item.name}</Text>
+                                                        {
+                                                            item.riverer &&
+                                                            <Text style={styles.riverer}>
+                                                                <Text>{item.riverer.name}</Text>
+                                                                {item.riverer.title.map(title => <Text>
+                                                                    | {title}</Text>)}
+                                                            </Text>
+                                                        }
+                                                    </View>
+                                                    <Text style={styles.listItemBtn}>详情</Text>
+                                                </View>
+                                            </TouchableOpacity>))
+                                    }
+                                </View>
+                            </View> :
+                            <TouchableOpacity activeOpacity={1}>
                                 <View style={styles.riverItem}>
-                                    <View style={{flex: 1}}>
+                                    <View>
                                         <Text style={styles.riverName}>{item.name}</Text>
                                         {
                                             item.riverer &&
@@ -454,51 +505,13 @@ class List extends Component {
                                             </Text>
                                         }
                                     </View>
-                                    <TouchableOpacity activeOpacity={1} onPress={() => this.goInfo(item.id)}>
-                                        <Text style={styles.listItemBtn}>详情</Text>
-                                    </TouchableOpacity>
+
+                                    <Text style={styles.listItemBtn}>详情</Text>
                                 </View>
                             </TouchableOpacity>
-                            <View>
-                                {
-                                    this.state.openTag[item.id] &&
-                                    item.sub.map(item => (
-                                        <TouchableOpacity activeOpacity={1} onPress={() => this.goInfo(item.id)}>
-                                            <View style={styles.riverItem}>
-                                                <View>
-                                                    <Text style={styles.riverName}>{item.name}</Text>
-                                                    {
-                                                        item.riverer &&
-                                                        <Text style={styles.riverer}>
-                                                            <Text>{item.riverer.name}</Text>
-                                                            {item.riverer.title.map(title => <Text> | {title}</Text>)}
-                                                        </Text>
-                                                    }
-                                                </View>
-                                                <Text style={styles.listItemBtn}>详情</Text>
-                                            </View>
-                                        </TouchableOpacity>))
-                                }
-                            </View>
-                        </View> :
-                        <TouchableOpacity activeOpacity={1}>
-                            <View style={styles.riverItem}>
-                                <View>
-                                    <Text style={styles.riverName}>{item.name}</Text>
-                                    {
-                                        item.riverer &&
-                                        <Text style={styles.riverer}>
-                                            <Text>{item.riverer.name}</Text>
-                                            {item.riverer.title.map(title => <Text> | {title}</Text>)}
-                                        </Text>
-                                    }
-                                </View>
 
-                                <Text style={styles.listItemBtn}>详情</Text>
-                            </View>
-                        </TouchableOpacity>
-
-                )}/>
+                    )}/> :
+                <Empty/>
         )
     }
 }
@@ -520,7 +533,7 @@ class AreaList extends Component {
             <View style={styles.list}>
                 <View style={styles.listTitle}>
                     <View style={styles.listTitleRow}>
-                        <Image source={require('../assets/images/icon-river.png')} style={styles.listTitleIcon}/>
+                        <Image source={require('../assets/images/icon-river.png')} style={styles.listTitleIcon} resizeMode="contain"/>
                         <Text style={styles.listTitleText}>柳城镇</Text>
                     </View>
                     <Text style={styles.listTitleInfo}>
@@ -558,7 +571,7 @@ class RiverList extends Component {
             <View style={styles.list}>
                 <View style={styles.listTitle}>
                     <View style={styles.listTitleRow}>
-                        <Image source={require('../assets/images/icon-river.png')} style={styles.listTitleIcon}/>
+                        <Image source={require('../assets/images/icon-river.png')} style={styles.listTitleIcon} resizeMode="contain"/>
                         <Text style={styles.listTitleText}>柳城镇</Text>
                     </View>
                     <TouchableHighlight>
@@ -675,7 +688,6 @@ const styles = StyleSheet.create({
     navIcon: {
         width: getWidth(23),
         height: getWidth(14),
-        resizeMode: 'contain',
         position: 'absolute',
         right: getWidth(35),
         top: getWidth(37),
@@ -771,7 +783,6 @@ const styles = StyleSheet.create({
     listTitleIcon: {
         width: getWidth(47),
         height: getWidth(34),
-        resizeMode: 'contain',
         marginRight: 5
     },
     listTitleText: {
@@ -816,8 +827,7 @@ const styles = StyleSheet.create({
         top: getWidth(58),
         width: getWidth(67),
         height: getWidth(67),
-        borderRadius: 1,
-        resizeMode: 'contain'
+        borderRadius: 1
     },
     riverIcon: {
         width: getWidth(67),

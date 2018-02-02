@@ -32,7 +32,7 @@ export default class NetworkError extends Component {
                 <Text style={styles.title}>{this.props.title}</Text>
                 <TouchableWithoutFeedback onPress={() => this.back()}>
                     <View style={styles.btnWrap}>
-                        <Image source={require('../assets/images/icon-back.png')} style={styles.iconBack}/>
+                        <Image source={require('../assets/images/icon-back.png')} style={styles.iconBack} resizeMode="contain"/>
                     </View>
                 </TouchableWithoutFeedback>
                 <View style={styles.rightMenu}>
@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
     iconBack: {
         width: getWidth(103),
         height: getWidth(38),
-        resizeMode: 'contain'
     },
     title: {
         flex: 1,
