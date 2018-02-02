@@ -446,7 +446,6 @@ class List extends Component {
                         item.sub && item.sub.length ?
                             <View>
                                 <ImageBackground
-                                    resizeMode="contain"
                                     style={styles.riverIconWrap}
                                     source={this.state.openTag[item.id] ? require('../assets/images/icon-reduce.png') : require('../assets/images/icon-plus.png')}>
                                     <View style={styles.riverIcon}/>
@@ -461,7 +460,7 @@ class List extends Component {
                                                 item.riverer &&
                                                 <Text style={styles.riverer}>
                                                     <Text>{item.riverer.name}</Text>
-                                                    {item.riverer.title.map(title => <Text> | {title}</Text>)}
+                                                    {item.riverer.title.map(title => <Text ket={title}> | {title}</Text>)}
                                                 </Text>
                                             }
                                         </View>
@@ -474,7 +473,7 @@ class List extends Component {
                                     {
                                         this.state.openTag[item.id] &&
                                         item.sub.map(item => (
-                                            <TouchableOpacity activeOpacity={1} onPress={() => this.goInfo(item.id)}>
+                                            <TouchableOpacity key={item.id} activeOpacity={1} onPress={() => this.goInfo(item.id)}>
                                                 <View style={styles.riverItem}>
                                                     <View>
                                                         <Text style={styles.riverName}>{item.name}</Text>
@@ -482,7 +481,7 @@ class List extends Component {
                                                             item.riverer &&
                                                             <Text style={styles.riverer}>
                                                                 <Text>{item.riverer.name}</Text>
-                                                                {item.riverer.title.map(title => <Text>
+                                                                {item.riverer.title.map(title => <Text key={title}
                                                                     | {title}</Text>)}
                                                             </Text>
                                                         }
@@ -501,7 +500,7 @@ class List extends Component {
                                             item.riverer &&
                                             <Text style={styles.riverer}>
                                                 <Text>{item.riverer.name}</Text>
-                                                {item.riverer.title.map(title => <Text> | {title}</Text>)}
+                                                {item.riverer.title.map(title => <Text key={title}> | {title}</Text>)}
                                             </Text>
                                         }
                                     </View>

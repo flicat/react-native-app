@@ -18,7 +18,7 @@ export default class FullLoading extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            visible: this.props.visible
+            visible: !!this.props.visible
         };
     }
 

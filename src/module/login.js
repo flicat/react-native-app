@@ -93,7 +93,6 @@ class Form extends Component {
                 <TouchableWithoutFeedback onPress={() => this.setState({remember: !this.state.remember})}>
                     <View style={styles.checkBox}>
                         <ImageBackground
-                            resizeMode="contain"
                             style={styles.iconCheckBg}
                             source={this.state.remember ? require('../assets/images/icon-checked.png') : require('../assets/images/icon-checkbox.png')}>
                             <View style={styles.iconCheckBg}/>

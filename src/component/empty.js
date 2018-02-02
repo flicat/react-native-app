@@ -21,7 +21,7 @@ export default class Empty extends Component {
     render () {
         return (
             <View style={styles.wrap}>
-                <ImageBackground style={styles.emptyBg} source={require('../assets/images/bg-empty.png')}  resizeMode="contain">
+                <ImageBackground style={styles.emptyBg} source={require('../assets/images/bg-empty.png')}>
                     <View style={styles.emptyBg}/>
                 </ImageBackground>
                 <Text>暂无相关数据</Text>

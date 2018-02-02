@@ -23,11 +23,10 @@ import NetworkErr from '../component/networkError';
 // TODO 获取消息
 async function getMsg() {
     await new Promise(function (resolve, reject) {
-        setTimeout(() => {
-            resolve(true);
-        }, 2000)
+        setTimeout(() => resolve(true), 1000);
     });
-    return data;
+
+    return true;
 }
 
 // 顶部banner
@@ -56,7 +55,6 @@ class Top extends Component {
                                     onPress={() => this.props.goUrl('Message')} style={styles.msgBtn}>
                     <ImageBackground
                         style={styles.iconMsgBg}
-                        resizeMode="contain"
                         source={this.state.message ? require('../assets/images/icon-msg-active.png') : require('../assets/images/icon-msg.png')}>
                         <View style={styles.iconMsgBg}/>
                     </ImageBackground>
