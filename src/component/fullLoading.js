@@ -10,7 +10,7 @@ import {
     StyleSheet,
     View,
     Modal,
-    ProgressBarAndroid
+    ActivityIndicator
 } from 'react-native';
 
 
@@ -26,7 +26,7 @@ export default class FullLoading extends Component {
         return (
             <Modal animationType="fade" transparent={true} visible={this.state.visible}>
                 <View style={styles.wrap}>
-                    <ProgressBarAndroid styleAttr="Inverse"/>
+                    <ActivityIndicator size="large"/>
                 </View>
             </Modal>
         );

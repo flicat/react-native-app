@@ -481,8 +481,7 @@ class List extends Component {
                                                             item.riverer &&
                                                             <Text style={styles.riverer}>
                                                                 <Text>{item.riverer.name}</Text>
-                                                                {item.riverer.title.map(title => <Text key={title}
-                                                                    | {title}</Text>)}
+                                                                {item.riverer.title.map(title => <Text key={title}> | {title}</Text>)}
                                                             </Text>
                                                         }
                                                     </View>
