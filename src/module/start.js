@@ -16,7 +16,7 @@ import {
 
 // TODO 获取登录状态信息
 async function getLoginState() {
-    return true;
+    return false;
 }
 
 // 样式表
