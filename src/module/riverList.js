@@ -435,7 +435,7 @@ class List extends Component {
     render() {
         return (
             !this.state.isReady ?
-                <FullLoading/> :
+                <FullLoading visible={true}/> :
                 this.state.list && this.state.list.length ?
                 <SectionList
                     initialNumToRender={10}
@@ -809,7 +809,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: '#aaf'
     },
     riverName: {
         fontSize: getWidth(36),
