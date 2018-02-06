@@ -15,16 +15,13 @@ import {
 
 
 export default class FullLoading extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            visible: !!this.props.visible
-        };
+    constructor() {
+        super();
     }
 
     render() {
         return (
-            <Modal animationType="fade" transparent={true} visible={this.state.visible}>
+            <Modal animationType="fade" transparent={true} visible={true}>
                 <View style={styles.wrap}>
                     <ActivityIndicator size="large"/>
                 </View>

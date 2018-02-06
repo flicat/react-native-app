@@ -15,8 +15,8 @@ import {
 
 
 export default class Empty extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
     }
     render () {
         return (

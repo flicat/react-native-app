@@ -227,7 +227,7 @@ class TopSearch extends Component {
                     placeholderTextColor="#b5b5b5"
                     underlineColorAndroid="transparent"
                     selectTextOnFocus={true}
-                    clearButtonMode={true}
+                    clearButtonMode="always"
                     onChange={(value) => this.setState({keyword: value})}
                     onSubmitEditing={() => this.search()}
                     style={styles.textInput}/>
@@ -272,10 +272,8 @@ class AreaMenu extends Component {
                 {
                     this.state.areas.map(item =>
                         (<View style={styles.areaItem} key={item.id}>
-                            <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8"
-                                                onPress={() => this.setArea(item.id)}>
-                                <Text
-                                    style={this.state.areaId === item.id ? styles.areaTextActive : styles.areaText}>{item.name}</Text>
+                            <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" onPress={() => this.setArea(item.id)}>
+                                <Text style={this.state.areaId === item.id ? styles.areaTextActive : styles.areaText}>{item.name}</Text>
                             </TouchableHighlight>
                         </View>)
                     )
@@ -435,81 +433,83 @@ class List extends Component {
     render() {
         return (
             !this.state.isReady ?
-                <FullLoading visible={true}/> :
+                <FullLoading/> :
                 this.state.list && this.state.list.length ?
-                <SectionList
-                    initialNumToRender={10}
-                    sections={[{data: this.state.list}]}
-                    keyExtractor={item => item.id}
-                    renderItem={({item}) => (
+                    <SectionList
+                        initialNumToRender={10}
+                        sections={[{data: this.state.list}]}
+                        keyExtractor={item => item.id}
+                        renderItem={({item}) => (
 
-                        item.sub && item.sub.length ?
-                            <View>
-                                <ImageBackground
-                                    style={styles.riverIconWrap}
-                                    source={this.state.openTag[item.id] ? require('../assets/images/icon-reduce.png') : require('../assets/images/icon-plus.png')}>
-                                    <View style={styles.riverIcon}/>
-                                </ImageBackground>
-
-
-                                <TouchableOpacity activeOpacity={1} onPress={() => this.toggleItem(item.id)}>
+                            item.sub && item.sub.length ?
+                                <View>
+                                    <ImageBackground
+                                        style={styles.riverIconWrap}
+                                        source={this.state.openTag[item.id] ? require('../assets/images/icon-reduce.png') : require('../assets/images/icon-plus.png')}>
+                                        <View style={styles.riverIcon}/>
+                                    </ImageBackground>
+                                    <TouchableOpacity activeOpacity={1} onPress={() => this.toggleItem(item.id)}>
+                                        <View style={styles.riverItem}>
+                                            <View style={{flex: 1}}>
+                                                <Text style={styles.riverName}>{item.name}</Text>
+                                                {
+                                                    item.riverer &&
+                                                    <Text style={styles.riverer}>
+                                                        <Text>{item.riverer.name}</Text>
+                                                        {item.riverer.title.map(title => <Text ket={title}>
+                                                            | {title}</Text>)}
+                                                    </Text>
+                                                }
+                                            </View>
+                                            <TouchableOpacity activeOpacity={1} onPress={() => this.goInfo(item.id)}>
+                                                <Text style={styles.listItemBtn}>详情</Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </TouchableOpacity>
+                                    <View>
+                                        {
+                                            this.state.openTag[item.id] &&
+                                            item.sub.map(item => (
+                                                <TouchableOpacity key={item.id} activeOpacity={1}
+                                                                  onPress={() => this.goInfo(item.id)}>
+                                                    <View style={styles.riverItem}>
+                                                        <View>
+                                                            <Text style={styles.riverName}>{item.name}</Text>
+                                                            {
+                                                                item.riverer &&
+                                                                <Text style={styles.riverer}>
+                                                                    <Text>{item.riverer.name}</Text>
+                                                                    {item.riverer.title.map(title => <Text key={title}>
+                                                                        | {title}</Text>)}
+                                                                </Text>
+                                                            }
+                                                        </View>
+                                                        <Text style={styles.listItemBtn}>详情</Text>
+                                                    </View>
+                                                </TouchableOpacity>))
+                                        }
+                                    </View>
+                                </View> :
+                                <TouchableOpacity activeOpacity={1}>
                                     <View style={styles.riverItem}>
-                                        <View style={{flex: 1}}>
+                                        <View>
                                             <Text style={styles.riverName}>{item.name}</Text>
                                             {
                                                 item.riverer &&
                                                 <Text style={styles.riverer}>
                                                     <Text>{item.riverer.name}</Text>
-                                                    {item.riverer.title.map(title => <Text ket={title}> | {title}</Text>)}
+                                                    {item.riverer.title.map(title => <Text key={title}>
+                                                        | {title}</Text>)}
                                                 </Text>
                                             }
                                         </View>
-                                        <TouchableOpacity activeOpacity={1} onPress={() => this.goInfo(item.id)}>
-                                            <Text style={styles.listItemBtn}>详情</Text>
-                                        </TouchableOpacity>
+
+                                        <Text style={styles.listItemBtn}>详情</Text>
                                     </View>
                                 </TouchableOpacity>
-                                <View>
-                                    {
-                                        this.state.openTag[item.id] &&
-                                        item.sub.map(item => (
-                                            <TouchableOpacity key={item.id} activeOpacity={1} onPress={() => this.goInfo(item.id)}>
-                                                <View style={styles.riverItem}>
-                                                    <View>
-                                                        <Text style={styles.riverName}>{item.name}</Text>
-                                                        {
-                                                            item.riverer &&
-                                                            <Text style={styles.riverer}>
-                                                                <Text>{item.riverer.name}</Text>
-                                                                {item.riverer.title.map(title => <Text key={title}> | {title}</Text>)}
-                                                            </Text>
-                                                        }
-                                                    </View>
-                                                    <Text style={styles.listItemBtn}>详情</Text>
-                                                </View>
-                                            </TouchableOpacity>))
-                                    }
-                                </View>
-                            </View> :
-                            <TouchableOpacity activeOpacity={1}>
-                                <View style={styles.riverItem}>
-                                    <View>
-                                        <Text style={styles.riverName}>{item.name}</Text>
-                                        {
-                                            item.riverer &&
-                                            <Text style={styles.riverer}>
-                                                <Text>{item.riverer.name}</Text>
-                                                {item.riverer.title.map(title => <Text key={title}> | {title}</Text>)}
-                                            </Text>
-                                        }
-                                    </View>
 
-                                    <Text style={styles.listItemBtn}>详情</Text>
-                                </View>
-                            </TouchableOpacity>
-
-                    )}/> :
-                <Empty/>
+                        )}/> :
+                    <Empty/>
         )
     }
 }
@@ -531,7 +531,8 @@ class AreaList extends Component {
             <View style={styles.list}>
                 <View style={styles.listTitle}>
                     <View style={styles.listTitleRow}>
-                        <Image source={require('../assets/images/icon-river.png')} style={styles.listTitleIcon} resizeMode="contain"/>
+                        <Image source={require('../assets/images/icon-river.png')} style={styles.listTitleIcon}
+                               resizeMode="contain"/>
                         <Text style={styles.listTitleText}>柳城镇</Text>
                     </View>
                     <Text style={styles.listTitleInfo}>
@@ -649,8 +650,11 @@ const styles = StyleSheet.create({
     },
 
     menu: {
+        width: getWidth(1080),
+        height: getWidth(88),
         paddingHorizontal: getWidth(30),
-        marginBottom: getWidth(24)
+        marginBottom: getWidth(24),
+        overflow: 'visible',
     },
     navWrap: {
         width: getWidth(1020),
@@ -713,13 +717,17 @@ const styles = StyleSheet.create({
         width: getWidth(1080),
         paddingVertical: getHeight(36),
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
     },
     areaItem: {
-        width: getWidth(1080 / 4),
+        width: getWidth(270),
         alignItems: 'center',
         justifyContent: 'center',
-        paddingBottom: 10
+        paddingBottom: 10,
+        overflow: 'hidden',
+        margin: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
     },
     areaTextActive: {
         fontSize: getWidth(36),
@@ -763,6 +771,7 @@ const styles = StyleSheet.create({
 
     list: {
         flex: 1,
+        zIndex: -1,
         backgroundColor: '#fff',
         paddingHorizontal: getWidth(30)
     },

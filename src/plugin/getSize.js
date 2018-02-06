@@ -12,9 +12,9 @@ const baseHeight = 1920;
 const {height, width} = Dimensions.get('window');
 
 export function getWidth (w) {
-    return Math.round(w / baseWidth * width);
+    return Math.floor(w / baseWidth * width);
 }
 
 export function getHeight (h) {
-    return Math.round(h / baseHeight * height);
+    return Math.floor(h / baseHeight * height);
 }
