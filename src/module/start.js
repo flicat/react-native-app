@@ -7,7 +7,6 @@
 import {NavigationActions} from 'react-navigation';
 import React, {Component} from 'react';
 import {getWidth, getHeight} from '../plugin/getSize';
-import Orientation from 'react-native-orientation';
 
 import {
     StyleSheet,
@@ -40,9 +39,6 @@ export default class Start extends Component {
     }
 
     componentDidMount() {
-
-        // 锁定竖屏
-        Orientation.lockToPortrait();
 
         let navigation = this.props.navigation;
 
