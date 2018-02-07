@@ -19,6 +19,7 @@ import {
     TouchableWithoutFeedback,
     SegmentedControlIOS
 } from 'react-native';
+import { MapView } from 'react-native-amap3d';
 
 
 // 网络错误提示信息
@@ -109,6 +110,12 @@ class Base extends Component {
         return (
             <View>
                 <Text>基础信息</Text>
+                <MapView
+                coordinate={{
+                latitude: 39.91095,
+                longitude: 116.37296,
+                }}
+                />
             </View>
         )
     }
