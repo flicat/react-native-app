@@ -71,6 +71,10 @@ export default class Start extends Component {
             navigation.dispatch(resetAction);
 
         }, 1000);
+
+        // 锁定竖屏
+        Orientation.lockToPortrait();
+        // console.warn(Orientation);
     }
 
     render() {
