@@ -427,7 +427,7 @@ class List extends Component {
     }
 
     goInfo(id) {
-        console.warn('info: ', id)
+        this.props.goInfo(id);
     }
 
     render() {
@@ -522,8 +522,8 @@ class AreaList extends Component {
         this.goInfo = this.goInfo.bind(this);
     }
 
-    goInfo() {
-        this.props.goInfo();
+    goInfo(id) {
+        this.props.goInfo(id);
     }
 
     render() {
@@ -547,7 +547,7 @@ class AreaList extends Component {
                     </Text>
                 </View>
 
-                <List/>
+                <List goInfo={this.goInfo}/>
             </View>
         )
     }
@@ -561,8 +561,8 @@ class RiverList extends Component {
         this.goInfo = this.goInfo.bind(this);
     }
 
-    goInfo() {
-        this.props.goInfo();
+    goInfo(id) {
+        this.props.goInfo(id);
     }
 
     render() {
@@ -577,7 +577,7 @@ class RiverList extends Component {
                         <Text style={styles.listItemBtn}>详情</Text>
                     </TouchableHighlight>
                 </View>
-                <List/>
+                <List goInfo={this.goInfo}/>
             </View>
         )
     }
@@ -601,8 +601,8 @@ export default class RiversInfo extends Component {
         });
     }
 
-    goInfo() {
-        this.props.navigation.navigate('Message');
+    goInfo(id) {
+        this.props.navigation.navigate('RiverInfo', {id});
     }
 
     render() {

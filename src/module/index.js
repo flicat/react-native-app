@@ -246,6 +246,7 @@ const styles = StyleSheet.create({
     },
 
     bannerWrap: {
+        paddingTop: getWidth(54),
         width: getWidth(1080),
         height: getWidth(536),
         backgroundColor: '#1b8fdf'
@@ -259,7 +260,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: getWidth(30),
         paddingVertical: getWidth(21),
         right: 0,
-        top: 0
+        top: getWidth(54)
     },
     iconMsgBg: {
         width: getWidth(63),

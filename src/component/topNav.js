@@ -45,6 +45,7 @@ export default class NetworkError extends Component {
 
 const styles = StyleSheet.create({
     wrap: {
+        marginTop: getWidth(54),
         width: getWidth(1080),
         height: getWidth(134),
         flexDirection: 'row',

@@ -12,6 +12,7 @@ import Login from './src/module/login';
 import Index from './src/module/index';
 import Message from './src/module/message';
 import RiverList from './src/module/riverList';
+import RiverInfo from './src/module/riverInfo';
 
 export default StackNavigator({
 
@@ -20,7 +21,8 @@ export default StackNavigator({
     Login: { screen: Login },
     Index: { screen: Index },
     Message: { screen: Message },
-    RiverList: { screen: RiverList }
+    RiverList: { screen: RiverList },
+    RiverInfo: { screen: RiverInfo }
 
 }, {
     initialRouteName: 'Start',         // 默认路由
