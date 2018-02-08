@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /**
  * Copyright (c) 2015-present, Facebook, Inc.
  * All rights reserved.
@@ -10,7 +9,7 @@
 
 #import "AppDelegate.h"
 #import "Orientation.h"
-//#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -19,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  //[AMapServices sharedServices].apiKey = @"db51a24a68281139bf38be69e9875b8f";
+  [AMapServices sharedServices].apiKey = @"db51a24a68281139bf38be69e9875b8f";
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
@@ -43,42 +42,3 @@
 }
 
 @end
-=======
-/**
- * Copyright (c) 2015-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
-#import "AppDelegate.h"
-
-#import <React/RCTBundleURLProvider.h>
-#import <React/RCTRootView.h>
-
-@implementation AppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-  NSURL *jsCodeLocation;
-
-  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"guiren_rn"
-                                               initialProperties:nil
-                                                   launchOptions:launchOptions];
-  rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
-
-  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  UIViewController *rootViewController = [UIViewController new];
-  rootViewController.view = rootView;
-  self.window.rootViewController = rootViewController;
-  [self.window makeKeyAndVisible];
-  return YES;
-}
-
-@end
->>>>>>> 3b8afa5c7705fb2b58047461b868d3f027caf798
