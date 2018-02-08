@@ -9,17 +9,15 @@ import {getWidth, getHeight} from '../plugin/getSize';
 import {
     StyleSheet,
     View,
-    TextInput,
     Text,
     Image,
-    SectionList,
+    ScrollView,
     ImageBackground,
-    TouchableHighlight,
+    SegmentedControlIOS,
     TouchableOpacity,
-    TouchableWithoutFeedback,
-    SegmentedControlIOS
+    TouchableWithoutFeedback
 } from 'react-native';
-
+import { MapView } from 'react-native-amap3d';
 
 // 网络错误提示信息
 import NetworkErr from '../component/networkError';
@@ -99,6 +97,218 @@ class TopTab extends Component {
 }
 
 
+// 地图信息
+class Map extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <View style={styles.mapWrap}>
+                <MapView
+                    coordinate={{
+                        latitude: 39.91095,
+                        longitude: 116.37296,
+                    }}
+                />
+            </View>
+        )
+    }
+}
+
+// 河流信息
+class River extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <View style={styles.river}>
+                <View style={styles.title}>
+                    <Image style={styles.riverIcon} source={require('../assets/images/icon-river.png')}
+                           resizeMode="contain"/>
+                    <Text style={styles.titleText}>镇江</Text>
+                    <TouchableWithoutFeedback>
+                        <ImageBackground source={require('../assets/images/icon-followed.png')} style={styles.follow}>
+                            <View style={styles.follow}/>
+                        </ImageBackground>
+                    </TouchableWithoutFeedback>
+                </View>
+
+                <View style={styles.riverInfo}>
+                    <View style={styles.riverRow}>
+                        <Text style={styles.infoTitle}>河道编号：</Text>
+                        <Text style={styles.infoText}>HDXH0001</Text>
+                        <Text style={styles.infoTitle}>所属区县：</Text>
+                        <Text style={styles.infoText}>东源县</Text>
+                    </View>
+                    <View style={styles.riverRow}>
+                        <Text style={styles.infoTitle}>河道起点：</Text>
+                        <Text style={styles.infoText}>珊瑚沙水库</Text>
+                        <Text style={styles.infoTitle}>河道等级：</Text>
+                        <Text style={styles.infoText}>区级</Text>
+                    </View>
+                    <View style={styles.riverRow}>
+                        <Text style={styles.infoTitle}>河道终点：</Text>
+                        <Text style={styles.infoText}>富阳界</Text>
+                        <Text style={styles.infoTitle}>河道长度：</Text>
+                        <Text style={styles.infoText}>24.3km</Text>
+                    </View>
+                    <View style={styles.riverRow}>
+                        <Text style={styles.infoTitle}>河长职责：</Text>
+                        <Text style={styles.infoText}>各级河长负责牵头阻止展开包干河道水质和污染源现状调查，制定水环境治理实施方案，推动重点工程项目落实，协调解决重点难点问题，确保完成任务。</Text>
+                    </View>
+                    <View style={styles.riverRow}>
+                        <Text style={styles.infoTitle}>整治目标：</Text>
+                        <Text style={styles.infoText}>水清，流畅，岸绿，景美，宜居</Text>
+                    </View>
+                </View>
+
+            </View>
+        )
+    }
+}
+
+// 河长信息
+class Riverer extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <View style={styles.river}>
+                <View style={styles.title}>
+                    <Image style={styles.rivererIcon} source={require('../assets/images/icon-riverer.png')}
+                           resizeMode="contain"/>
+                    <Text style={styles.titleText}>河长信息</Text>
+                </View>
+
+                <View style={styles.rivererInfo}>
+                    <View style={styles.rivererRow}>
+                        <View style={styles.rivererSubRow}>
+                            <Text style={styles.rivererTitle}>区级河长</Text>
+                            <Text style={styles.rivererText}>付高温</Text>
+                        </View>
+                        <View style={styles.rivererSubRow}>
+                            <Text style={styles.rivererTitle}>河道警长</Text>
+                            <Text style={styles.rivererText}>王卫星</Text>
+                            <TouchableWithoutFeedback>
+                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"  style={styles.iconTell}/>
+                            </TouchableWithoutFeedback>
+                        </View>
+                    </View>
+                    <View style={styles.rivererSubRow}>
+                        <Text style={styles.rivererTitle}>河长职务</Text>
+                        <Text style={styles.rivererText}>区委常委、常委副市长</Text>
+                    </View>
+                    <View style={styles.rivererRow}>
+                        <View style={styles.rivererSubRow}>
+                            <Text style={styles.rivererTitle}>联系部门</Text>
+                            <Text style={styles.rivererText}>区水务局</Text>
+                        </View>
+                        <View style={styles.rivererSubRow}>
+                            <Text style={styles.rivererTitle}>联系方式</Text>
+                            <Text style={styles.rivererText}>曲丽芳</Text>
+                            <TouchableWithoutFeedback>
+                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"  style={styles.iconTell}/>
+                            </TouchableWithoutFeedback>
+                        </View>
+                    </View>
+                    <View style={styles.rivererSubRow}>
+                        <Text style={styles.rivererTitle}>统一监督电话</Text>
+                        <TouchableOpacity activeOpacity={1}>
+                            <Text style={styles.rivererText}>0571-8781852</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+            </View>
+        )
+    }
+}
+
+// 下级河流信息
+class SubRiver extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <View style={styles.river}>
+                <View style={styles.title}>
+                    <Image style={styles.subRiverIcon} source={require('../assets/images/icon-sub-river.png')}
+                           resizeMode="contain"/>
+                    <Text style={styles.titleText}>下级河道</Text>
+                </View>
+
+                <View style={styles.rivererInfo}>
+                    <View style={styles.rivererRow}>
+                        <View style={styles.rivererSubRow}>
+                            <Text style={styles.rivererTitle}>下级河道</Text>
+                            <TouchableOpacity activeOpacity={1}>
+                                <Text style={styles.riverName}>秦淮河xx河段</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.rivererSubRow}>
+                            <Text style={styles.rivererTitle}>下级河长</Text>
+                            <Text style={styles.rivererText}>王菲和</Text>
+                            <TouchableWithoutFeedback>
+                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"  style={styles.iconTell}/>
+                            </TouchableWithoutFeedback>
+                        </View>
+                    </View>
+                    <View style={styles.rivererRow}>
+                        <View style={styles.rivererSubRow}>
+                            <Text style={styles.rivererTitle}>联系部门</Text>
+                            <Text style={styles.rivererText}>街镇水务局</Text>
+                        </View>
+                        <View style={styles.rivererSubRow}>
+                            <Text style={styles.rivererTitle}>联系人</Text>
+                            <Text style={styles.rivererText}>张梦亿</Text>
+                            <TouchableWithoutFeedback>
+                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"  style={styles.iconTell}/>
+                            </TouchableWithoutFeedback>
+                        </View>
+                    </View>
+                    <View style={styles.rivererRow}>
+                        <View style={styles.rivererSubRow}>
+                            <Text style={styles.rivererTitle}>下级河道</Text>
+                            <TouchableOpacity activeOpacity={1}>
+                                <Text style={styles.riverName}>秦淮河xx河段</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.rivererSubRow}>
+                            <Text style={styles.rivererTitle}>下级河长</Text>
+                            <Text style={styles.rivererText}>田营长</Text>
+                            <TouchableWithoutFeedback>
+                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"  style={styles.iconTell}/>
+                            </TouchableWithoutFeedback>
+                        </View>
+                    </View>
+                    <View style={styles.rivererRow}>
+                        <View style={styles.rivererSubRow}>
+                            <Text style={styles.rivererTitle}>联系部门</Text>
+                            <Text style={styles.rivererText}>街镇水务局</Text>
+                        </View>
+                        <View style={styles.rivererSubRow}>
+                            <Text style={styles.rivererTitle}>联系人</Text>
+                            <Text style={styles.rivererText}>李瑶</Text>
+                            <TouchableWithoutFeedback>
+                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"  style={styles.iconTell}/>
+                            </TouchableWithoutFeedback>
+                        </View>
+                    </View>
+                </View>
+
+            </View>
+        )
+    }
+}
+
 // 基础信息
 class Base extends Component {
     constructor(props) {
@@ -108,7 +318,10 @@ class Base extends Component {
     render() {
         return (
             <View>
-                <Text>基础信息</Text>
+                <Map/>
+                <River/>
+                <Riverer/>
+                <SubRiver/>
             </View>
         )
     }
@@ -149,7 +362,7 @@ export default class RiverInfo extends Component {
         super(props);
 
         this.state = {
-            id: this.props.navigation.state.params.id,
+            id: 0,//this.props.navigation.state.params.id,
             tab: 'base', // base 基础信息 info 信息公开 article 一河一策
         };
 
@@ -165,11 +378,11 @@ export default class RiverInfo extends Component {
             <View style={styles.wrap}>
                 <TopNav title={'河道详情'} navigation={this.props.navigation}/>
                 <TopTab setTab={this.setTab}/>
-                <View>
+                <ScrollView style={styles.tabWrap}>
                     {this.state.tab === 'base' && <Base/>}
                     {this.state.tab === 'info' && <Info/>}
                     {this.state.tab === 'article' && <Article/>}
-                </View>
+                </ScrollView>
                 <NetworkErr/>
             </View>
         )
@@ -189,5 +402,114 @@ const styles = StyleSheet.create({
     },
     topTabItem: {
         height: getWidth(88)
-    }
+    },
+    tabWrap: {
+        flex: 1,
+        backgroundColor: '#fff'
+    },
+
+    mapWrap: {
+        width: getWidth(1080),
+        height: getWidth(612),
+        backgroundColor: '#f5f3f0'
+    },
+    river: {
+        paddingHorizontal: getWidth(30),
+    },
+    title: {
+        flex: 1,
+        height: getWidth(82),
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+    riverIcon: {
+        width: getWidth(47),
+        height: getWidth(34),
+        marginRight: 5,
+    },
+    titleText: {
+        fontSize: getWidth(38),
+        color: '#000',
+    },
+    follow: {
+        position: 'absolute',
+        right: 0,
+        top: getWidth(13),
+        width: getWidth(59),
+        height: getWidth(55),
+    },
+    riverInfo: {
+        backgroundColor: '#f8f8f8',
+        padding: getWidth(18)
+    },
+    riverRow: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        paddingVertical: getWidth(10)
+    },
+    infoTitle: {
+        lineHeight: getWidth(42),
+        fontSize: getWidth(30),
+        color: '#a6a6a6',
+    },
+    infoText: {
+        lineHeight: getWidth(42),
+        fontSize: getWidth(30),
+        color: '#333',
+        flex: 1,
+    },
+    rivererIcon: {
+        width: getWidth(48),
+        height: getWidth(48),
+        marginRight: 5,
+    },
+    rivererInfo: {
+        borderLeftWidth: 1,
+        borderTopWidth: 1,
+        borderColor: '#e8e8e8',
+    },
+    rivererRow: {
+        flex: 1,
+        flexDirection: 'row',
+        height: getWidth(82),
+    },
+    rivererSubRow: {
+        flex: 1,
+        flexDirection: 'row',
+        height: getWidth(82),
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingHorizontal: getWidth(30),
+        borderRightWidth: 1,
+        borderBottomWidth: 1,
+        borderColor: '#e8e8e8',
+    },
+    rivererTitle: {
+        fontSize: getWidth(30),
+        color: '#a6a6a6',
+        marginRight: getWidth(36)
+    },
+    rivererText: {
+        fontSize: getWidth(30),
+        color: '#333',
+    },
+    iconTell: {
+        width: getWidth(39),
+        height: getWidth(39),
+        position: 'absolute',
+        right: getWidth(12),
+        top: getWidth(24),
+    },
+
+    subRiverIcon: {
+        width: getWidth(47),
+        height: getWidth(42),
+        marginRight: 5,
+    },
+    riverName: {
+        fontSize: getWidth(30),
+        color: '#219ef7',
+    },
+
 });
