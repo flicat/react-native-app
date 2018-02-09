@@ -17,7 +17,6 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback
 } from 'react-native';
-import { MapView } from 'react-native-amap3d';
 
 // 网络错误提示信息
 import NetworkErr from '../component/networkError';
@@ -106,12 +105,7 @@ class Map extends Component {
     render() {
         return (
             <View style={styles.mapWrap}>
-                <MapView
-                    coordinate={{
-                        latitude: 39.91095,
-                        longitude: 116.37296,
-                    }}
-                />
+
             </View>
         )
     }

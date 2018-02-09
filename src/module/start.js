@@ -69,7 +69,6 @@ export default class Start extends Component {
         
         // 锁定竖屏
         Orientation.lockToPortrait();
-
     }
 
     render() {
