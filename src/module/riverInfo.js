@@ -7,11 +7,14 @@
 import React, {Component} from 'react';
 import {getWidth, getHeight} from '../plugin/getSize';
 import {
+    Animated,
+    Easing,
     StyleSheet,
     View,
     Text,
     Image,
     ScrollView,
+    FlatList,
     ImageBackground,
     SegmentedControlIOS,
     TouchableOpacity,
@@ -182,36 +185,38 @@ class Riverer extends Component {
 
                 <View style={styles.rivererInfo}>
                     <View style={styles.rivererRow}>
-                        <View style={styles.rivererSubRow}>
+                        <View style={styles.rivererSubRow2}>
                             <Text style={styles.rivererTitle}>区级河长</Text>
                             <Text style={styles.rivererText}>付高温</Text>
                         </View>
-                        <View style={styles.rivererSubRow}>
+                        <View style={styles.rivererSubRow2}>
                             <Text style={styles.rivererTitle}>河道警长</Text>
                             <Text style={styles.rivererText}>王卫星</Text>
                             <TouchableWithoutFeedback>
-                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"  style={styles.iconTell}/>
+                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"
+                                       style={styles.iconTell}/>
                             </TouchableWithoutFeedback>
                         </View>
                     </View>
-                    <View style={styles.rivererSubRow}>
+                    <View style={styles.rivererSubRow1}>
                         <Text style={styles.rivererTitle}>河长职务</Text>
                         <Text style={styles.rivererText}>区委常委、常委副市长</Text>
                     </View>
                     <View style={styles.rivererRow}>
-                        <View style={styles.rivererSubRow}>
+                        <View style={styles.rivererSubRow2}>
                             <Text style={styles.rivererTitle}>联系部门</Text>
                             <Text style={styles.rivererText}>区水务局</Text>
                         </View>
-                        <View style={styles.rivererSubRow}>
+                        <View style={styles.rivererSubRow2}>
                             <Text style={styles.rivererTitle}>联系方式</Text>
                             <Text style={styles.rivererText}>曲丽芳</Text>
                             <TouchableWithoutFeedback>
-                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"  style={styles.iconTell}/>
+                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"
+                                       style={styles.iconTell}/>
                             </TouchableWithoutFeedback>
                         </View>
                     </View>
-                    <View style={styles.rivererSubRow}>
+                    <View style={styles.rivererSubRow1}>
                         <Text style={styles.rivererTitle}>统一监督电话</Text>
                         <TouchableOpacity activeOpacity={1}>
                             <Text style={styles.rivererText}>0571-8781852</Text>
@@ -241,58 +246,62 @@ class SubRiver extends Component {
 
                 <View style={styles.rivererInfo}>
                     <View style={styles.rivererRow}>
-                        <View style={styles.rivererSubRow}>
+                        <View style={styles.rivererSubRow2}>
                             <Text style={styles.rivererTitle}>下级河道</Text>
                             <TouchableOpacity activeOpacity={1}>
                                 <Text style={styles.riverName}>秦淮河xx河段</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.rivererSubRow}>
+                        <View style={styles.rivererSubRow2}>
                             <Text style={styles.rivererTitle}>下级河长</Text>
                             <Text style={styles.rivererText}>王菲和</Text>
                             <TouchableWithoutFeedback>
-                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"  style={styles.iconTell}/>
+                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"
+                                       style={styles.iconTell}/>
                             </TouchableWithoutFeedback>
                         </View>
                     </View>
                     <View style={styles.rivererRow}>
-                        <View style={styles.rivererSubRow}>
+                        <View style={styles.rivererSubRow2}>
                             <Text style={styles.rivererTitle}>联系部门</Text>
                             <Text style={styles.rivererText}>街镇水务局</Text>
                         </View>
-                        <View style={styles.rivererSubRow}>
+                        <View style={styles.rivererSubRow2}>
                             <Text style={styles.rivererTitle}>联系人</Text>
                             <Text style={styles.rivererText}>张梦亿</Text>
                             <TouchableWithoutFeedback>
-                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"  style={styles.iconTell}/>
+                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"
+                                       style={styles.iconTell}/>
                             </TouchableWithoutFeedback>
                         </View>
                     </View>
                     <View style={styles.rivererRow}>
-                        <View style={styles.rivererSubRow}>
+                        <View style={styles.rivererSubRow2}>
                             <Text style={styles.rivererTitle}>下级河道</Text>
                             <TouchableOpacity activeOpacity={1}>
                                 <Text style={styles.riverName}>秦淮河xx河段</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.rivererSubRow}>
+                        <View style={styles.rivererSubRow2}>
                             <Text style={styles.rivererTitle}>下级河长</Text>
                             <Text style={styles.rivererText}>田营长</Text>
                             <TouchableWithoutFeedback>
-                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"  style={styles.iconTell}/>
+                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"
+                                       style={styles.iconTell}/>
                             </TouchableWithoutFeedback>
                         </View>
                     </View>
                     <View style={styles.rivererRow}>
-                        <View style={styles.rivererSubRow}>
+                        <View style={styles.rivererSubRow2}>
                             <Text style={styles.rivererTitle}>联系部门</Text>
                             <Text style={styles.rivererText}>街镇水务局</Text>
                         </View>
-                        <View style={styles.rivererSubRow}>
+                        <View style={styles.rivererSubRow2}>
                             <Text style={styles.rivererTitle}>联系人</Text>
                             <Text style={styles.rivererText}>李瑶</Text>
                             <TouchableWithoutFeedback>
-                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"  style={styles.iconTell}/>
+                                <Image source={require('../assets/images/icon-tell.png')} resizeMode="contain"
+                                       style={styles.iconTell}/>
                             </TouchableWithoutFeedback>
                         </View>
                     </View>
@@ -307,22 +316,87 @@ class SubRiver extends Component {
 class Base extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isOpen: false,
+            translateValue: new Animated.Value(0)
+        };
+    }
+
+    toggleInfo() {
+        let toValue;
+
+        if (this.state.isOpen) {
+            toValue = 0;
+        } else {
+            toValue = getHeight(-1168);
+        }
+
+        Animated.timing(this.state.translateValue, {
+            toValue,
+            duration: 300,
+            easing: Easing.linear,// 线性的渐变函数
+        }).start();
+
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
     }
 
     render() {
         return (
-            <View>
+            <View style={styles.tabWrap}>
                 <Map/>
-                <River/>
-                <Riverer/>
-                <SubRiver/>
+                <View style={styles.infoWrap}>
+                    <TouchableWithoutFeedback onPress={() => this.toggleInfo()}>
+                        <Animated.View style={{
+                            width: getWidth(1080),
+                            height: getHeight(1920),
+                            backgroundColor: '#fff',
+                            transform: [{translateY: this.state.translateValue}]
+                        }}>
+                            <ImageBackground
+                                style={styles.iconToggleWrap}
+                                source={this.state.isOpen ? require('../assets/images/icon-arrow-down.png') : require('../assets/images/icon-arrow-up.png')}>
+                                <View style={styles.iconToggle}/>
+                            </ImageBackground>
+                            <River/>
+                            <Riverer/>
+                            <SubRiver/>
+                        </Animated.View>
+                    </TouchableWithoutFeedback>
+                </View>
             </View>
+
         )
     }
 }
 
-// 信息公开
-class Info extends Component {
+
+// 事件列表
+class EventList extends Component {
+     constructor(props) {
+        super(props);
+
+        this.state = {
+            data: [
+                {
+                    
+                }
+            ]
+        };
+    }
+
+    render() {
+        return (
+            <FlatList>
+                
+            </FlatList>
+        )
+    }
+}
+
+// 巡河日志
+class logList extends Component {
     constructor(props) {
         super(props);
     }
@@ -330,7 +404,42 @@ class Info extends Component {
     render() {
         return (
             <View>
-                <Text>信息公开</Text>
+
+            </View>
+        )
+    }
+}
+
+
+// 信息公开
+class Info extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            tab: 'event'  // event  log
+        };
+    }
+
+    switchTab (tab) {
+        this.setState({tab});
+    }
+
+    render() {
+        return (
+            <View>
+                <Text>
+                    <TouchableWithoutFeedback onPress={() => this.switchTab('event')}>
+                        <Text>事件列表</Text>
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={() => this.switchTab('log')}>
+                        <Text>巡河日志</Text>
+                    </TouchableWithoutFeedback>
+                </Text>
+
+                {this.state.tab === 'event' && <EventList/>}
+                {this.state.tab === 'log' && <logList/>}
+
             </View>
         )
     }
@@ -344,9 +453,11 @@ class Article extends Component {
 
     render() {
         return (
-            <View>
-                <Text>一河一策</Text>
-            </View>
+            <ScrollView style={styles.tabWrap}>
+                <View>
+                    <Text>一河一策</Text>
+                </View>
+            </ScrollView>
         )
     }
 }
@@ -372,11 +483,9 @@ export default class RiverInfo extends Component {
             <View style={styles.wrap}>
                 <TopNav title={'河道详情'} navigation={this.props.navigation}/>
                 <TopTab setTab={this.setTab}/>
-                <ScrollView style={styles.tabWrap}>
-                    {this.state.tab === 'base' && <Base/>}
-                    {this.state.tab === 'info' && <Info/>}
-                    {this.state.tab === 'article' && <Article/>}
-                </ScrollView>
+                {this.state.tab === 'base' && <Base/>}
+                {this.state.tab === 'info' && <Info/>}
+                {this.state.tab === 'article' && <Article/>}
                 <NetworkErr/>
             </View>
         )
@@ -404,14 +513,35 @@ const styles = StyleSheet.create({
 
     mapWrap: {
         width: getWidth(1080),
-        height: getWidth(612),
-        backgroundColor: '#f5f3f0'
+        height: getWidth(1168),
+        backgroundColor: '#dde5f1'
+    },
+    infoWrap: {
+        flex: 1,
+    },
+    infoContent: {
+        width: getWidth(1080),
+        height: getHeight(1920),
+        backgroundColor: '#fff',
+        position: 'absolute',
+        left: 0,
+        top: 0,
+    },
+    iconToggleWrap: {
+        width: getWidth(57),
+        height: getWidth(32),
+        marginTop: getWidth(10),
+        alignSelf: 'center'
+    },
+    iconToggle: {
+        width: getWidth(57),
+        height: getWidth(32),
     },
     river: {
         paddingHorizontal: getWidth(30),
     },
     title: {
-        flex: 1,
+        width: getWidth(1020),
         height: getWidth(82),
         flexDirection: 'row',
         alignItems: 'center',
@@ -464,12 +594,23 @@ const styles = StyleSheet.create({
         borderColor: '#e8e8e8',
     },
     rivererRow: {
-        flex: 1,
+        width: getWidth(1020),
+        height: getWidth(82),
+        flexDirection: 'row',
+    },
+    rivererSubRow1: {
+        width: getWidth(1020),
         flexDirection: 'row',
         height: getWidth(82),
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingHorizontal: getWidth(30),
+        borderRightWidth: 1,
+        borderBottomWidth: 1,
+        borderColor: '#e8e8e8',
     },
-    rivererSubRow: {
-        flex: 1,
+    rivererSubRow2: {
+        width: getWidth(1020 / 2),
         flexDirection: 'row',
         height: getWidth(82),
         alignItems: 'center',

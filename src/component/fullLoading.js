@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {getWidth, getHeight} from '../plugin/getSize';
+
 import {
     StyleSheet,
     View,

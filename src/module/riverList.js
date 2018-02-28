@@ -12,6 +12,7 @@ import {
     TextInput,
     Text,
     Image,
+    Modal,
     SectionList,
     ImageBackground,
     TouchableHighlight,
@@ -220,17 +221,24 @@ class TopSearch extends Component {
     render() {
         return (
             <View style={styles.topSearch}>
-                <TextInput
-                    placeholder="请输入河流或姓名"
-                    maxLength={20}
-                    returnKeyType="search"
-                    placeholderTextColor="#b5b5b5"
-                    underlineColorAndroid="transparent"
-                    selectTextOnFocus={true}
-                    clearButtonMode="always"
-                    onChange={(value) => this.setState({keyword: value})}
-                    onSubmitEditing={() => this.search()}
-                    style={styles.textInput}/>
+                <View style={styles.searchInput}>
+                    <Image style={styles.searchIcon} resizeMode="contain"
+                           source={require('../assets/images/icon-search.png')}/>
+                    <TextInput
+                        placeholder="请输入河流或姓名"
+                        maxLength={20}
+                        returnKeyType="search"
+                        placeholderTextColor="#b5b5b5"
+                        underlineColorAndroid="transparent"
+                        selectTextOnFocus={true}
+                        clearButtonMode="always"
+                        onChange={(value) => this.setState({keyword: value})}
+                        onSubmitEditing={() => this.search()}
+                        style={styles.textInput}/>
+                </View>
+                <TouchableOpacity activeOpacity={1} onPress={() => this.search()}>
+                    <Text style={styles.searchBtn}>搜索</Text>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -272,8 +280,10 @@ class AreaMenu extends Component {
                 {
                     this.state.areas.map(item =>
                         (<View style={styles.areaItem} key={item.id}>
-                            <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" onPress={() => this.setArea(item.id)}>
-                                <Text style={this.state.areaId === item.id ? styles.areaTextActive : styles.areaText}>{item.name}</Text>
+                            <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8"
+                                                onPress={() => this.setArea(item.id)}>
+                                <Text
+                                    style={this.state.areaId === item.id ? styles.areaTextActive : styles.areaText}>{item.name}</Text>
                             </TouchableHighlight>
                         </View>)
                     )
@@ -367,7 +377,8 @@ class Menu extends Component {
                             <Text style={this.state.type === 'area' ? styles.navTextActive : styles.navText}>按区域</Text>
                             {
                                 this.state.type === 'area' &&
-                                <Image style={styles.navIcon} resizeMode="contain" source={require('../assets/images/icon-arrow-down.png')}/>
+                                <Image style={styles.navIcon} resizeMode="contain"
+                                       source={require('../assets/images/icon-triangle-down.png')}/>
                             }
                         </View>
                     </TouchableWithoutFeedback>
@@ -376,7 +387,8 @@ class Menu extends Component {
                             <Text style={this.state.type === 'river' ? styles.navTextActive : styles.navText}>按河道</Text>
                             {
                                 this.state.type === 'river' &&
-                                <Image style={styles.navIcon} resizeMode="contain" source={require('../assets/images/icon-arrow-down.png')}/>
+                                <Image style={styles.navIcon} resizeMode="contain"
+                                       source={require('../assets/images/icon-triangle-down.png')}/>
                             }
                         </View>
                     </TouchableWithoutFeedback>
@@ -520,10 +532,19 @@ class AreaList extends Component {
         super(props);
 
         this.goInfo = this.goInfo.bind(this);
+        this.state = {
+            showSituation: false
+        };
     }
 
     goInfo(id) {
         this.props.goInfo(id);
+    }
+
+    toggleSituation() {
+        this.setState({
+            showSituation: !this.state.showSituation
+        });
     }
 
     render() {
@@ -534,6 +555,9 @@ class AreaList extends Component {
                         <Image source={require('../assets/images/icon-river.png')} style={styles.listTitleIcon}
                                resizeMode="contain"/>
                         <Text style={styles.listTitleText}>柳城镇</Text>
+                        <TouchableOpacity activeOpacity={1} onPress={() => this.toggleSituation()}>
+                            <Text style={styles.situationBtn}>概况</Text>
+                        </TouchableOpacity>
                     </View>
                     <Text style={styles.listTitleInfo}>
                         <Text>张仁建</Text>
@@ -547,8 +571,60 @@ class AreaList extends Component {
                     </Text>
                 </View>
 
+                {this.state.showSituation && <AreaInfo toggle={() => this.toggleSituation()}/>}
+
                 <List goInfo={this.goInfo}/>
             </View>
+        )
+    }
+}
+
+// 区域概况
+class AreaInfo extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <Modal animationType="fade" transparent={true} visible={true}>
+                <TouchableWithoutFeedback onPress={this.props.toggle}>
+                    <View style={styles.modalWrap}>
+                        <View style={styles.modalContent}>
+                            <Text style={styles.modalTitle}>太和镇河流概况</Text>
+                            <View style={styles.modalItem}>
+                                <Image style={styles.modalIcon} source={require('../assets/images/icon-m-river.png')}
+                                       resizeMode="contain"/>
+                                <View style={styles.modalLabel}>
+                                    <Text style={styles.modalText}>
+                                        共<Text style={styles.modalEmTxt}>10</Text>条河
+                                    </Text>
+                                    <Text style={styles.modalText}>河流总长度 <Text
+                                        style={styles.modalEmTxt}>20km</Text></Text>
+                                    <Text style={styles.modalText}>总积雨面积 <Text
+                                        style={styles.modalEmTxt}>500km²</Text></Text>
+                                </View>
+                            </View>
+                            <View style={styles.modalItem}>
+                                <Image style={styles.modalIcon} source={require('../assets/images/icon-m-area.png')}
+                                       resizeMode="contain"/>
+                                <View style={styles.modalLabel}>
+                                    <Text style={styles.modalStrongTxt}>积雨面积：</Text>
+                                    <Text style={styles.modalSpanTxt}>
+                                        <Text style={styles.modalText}>50km²</Text> 以下的有 <Text style={styles.modalEmTxt}>3条</Text>
+                                    </Text>
+                                    <Text style={styles.modalSpanTxt}>
+                                        <Text style={styles.modalText}>50km²</Text> 至 <Text style={styles.modalText}>100km²</Text> 的有 <Text style={styles.modalEmTxt}>6条</Text>
+                                    </Text>
+                                    <Text style={styles.modalSpanTxt}>
+                                        <Text style={styles.modalText}>100km²</Text> 以上的有 <Text style={styles.modalEmTxt}>1条</Text>
+                                    </Text>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </TouchableWithoutFeedback>
+            </Modal>
         )
     }
 }
@@ -570,7 +646,8 @@ class RiverList extends Component {
             <View style={styles.list}>
                 <View style={styles.listTitle}>
                     <View style={styles.listTitleRow}>
-                        <Image source={require('../assets/images/icon-river.png')} style={styles.listTitleIcon} resizeMode="contain"/>
+                        <Image source={require('../assets/images/icon-river.png')} style={styles.listTitleIcon}
+                               resizeMode="contain"/>
                         <Text style={styles.listTitleText}>柳城镇</Text>
                     </View>
                     <TouchableHighlight>
@@ -628,37 +705,61 @@ const styles = StyleSheet.create({
     },
 
     topSearch: {
+        alignItems: 'stretch',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
         width: getWidth(1080),
-        height: getWidth(82),
-        paddingHorizontal: getWidth(30),
+        height: getWidth(96),
+        paddingHorizontal: getWidth(48),
         paddingVertical: 0,
         margin: 0,
         marginBottom: getWidth(19)
     },
-    textInput: {
-        flex: 1,
-        fontSize: getWidth(32),
-        height: getWidth(82),
-        lineHeight: getWidth(82),
-        textAlign: 'center',
+    searchInput: {
+        width: getWidth(780),
+        height: getWidth(96),
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        flexDirection: 'row',
         backgroundColor: '#fff',
         borderRadius: 5,
-        borderWidth: StyleSheet.hairlineWidth,
-        borderColor: '#ddd',
+    },
+    searchIcon: {
+        width: getWidth(31),
+        height: getWidth(31)
+    },
+    searchBtn: {
+        width: getWidth(180),
+        height: getWidth(96),
+        lineHeight: getWidth(96),
+        fontSize: getWidth(32),
+        textAlign: 'center',
+        color: '#fff',
+        backgroundColor: '#219ef7',
+        overflow: 'hidden',
+        borderRadius: 5,
+    },
+    textInput: {
+        fontSize: getWidth(32),
+        width: getWidth(700),
+        height: getWidth(96),
+        lineHeight: getWidth(96),
+        textAlign: 'left',
+        borderWidth: 0,
         padding: 0,
         margin: 0
     },
 
     menu: {
         width: getWidth(1080),
-        height: getWidth(88),
-        paddingHorizontal: getWidth(30),
+        height: getWidth(102),
+        paddingHorizontal: getWidth(48),
         marginBottom: getWidth(24),
         overflow: 'visible',
     },
     navWrap: {
-        width: getWidth(1020),
-        height: getWidth(88),
+        width: getWidth(984),
+        height: getWidth(102),
         padding: 0,
         margin: 0,
         borderColor: '#219ef7',
@@ -691,14 +792,14 @@ const styles = StyleSheet.create({
         width: getWidth(23),
         height: getWidth(14),
         position: 'absolute',
-        right: getWidth(35),
-        top: getWidth(37),
+        right: getWidth(24),
+        top: getWidth(44),
     },
 
     popupMenu: {
         position: 'absolute',
         left: 0,
-        top: getWidth(88),
+        top: getWidth(102),
         zIndex: 10,
         width: getWidth(1080),
         height: getWidth(1920),
@@ -790,11 +891,11 @@ const styles = StyleSheet.create({
     listTitleIcon: {
         width: getWidth(47),
         height: getWidth(34),
-        marginRight: 5
     },
     listTitleText: {
         fontSize: getWidth(38),
-        color: '#000'
+        color: '#000',
+        marginHorizontal: 5
     },
     listTitleInfo: {
         fontSize: getWidth(36),
@@ -809,7 +910,17 @@ const styles = StyleSheet.create({
         borderColor: '#e4e4e4',
         borderRadius: 3
     },
-
+    situationBtn: {
+        width: getWidth(94),
+        height: getWidth(52),
+        lineHeight: getWidth(52),
+        fontSize: getWidth(28),
+        textAlign: 'center',
+        color: '#fff',
+        backgroundColor: '#219ef7',
+        overflow: 'hidden',
+        borderRadius: getWidth(10)
+    },
     riverItem: {
         height: getWidth(183),
         paddingLeft: getWidth(94),
@@ -839,5 +950,58 @@ const styles = StyleSheet.create({
     riverIcon: {
         width: getWidth(67),
         height: getWidth(67),
-    }
+    },
+
+    modalWrap: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)'
+    },
+    modalContent: {
+        width: getWidth(677),
+        height: getWidth(745),
+        paddingVertical: getWidth(50),
+        overflow: 'hidden',
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        borderRadius: 5
+    },
+    modalTitle: {
+        fontSize: getWidth(42),
+        textAlign: 'center',
+        color: '#000',
+    },
+    modalItem: {
+        width: getWidth(677),
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+    },
+    modalIcon: {
+        width: getWidth(108),
+        height: getWidth(108),
+        marginRight: getWidth(40),
+    },
+    modalLabel: {
+        width: getWidth(460),
+    },
+    modalText: {
+        fontSize: getWidth(34),
+        lineHeight: getWidth(34 * 2),
+        color: '#666',
+    },
+    modalEmTxt: {
+        fontSize: getWidth(34),
+        color: '#219ef7',
+    },
+    modalStrongTxt: {
+        fontSize: getWidth(34),
+        color: '#000',
+    },
+    modalSpanTxt: {
+        fontSize: getWidth(34),
+        color: '#acacac',
+    },
 });

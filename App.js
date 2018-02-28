@@ -25,7 +25,7 @@ export default StackNavigator({
     RiverInfo: { screen: RiverInfo }
 
 }, {
-    initialRouteName: 'RiverInfo',         // 默认路由
+    initialRouteName: 'Start',         // 默认路由
     headerMode: 'none',                // 隐藏头部
     mode: 'modal',                     // 动画效果
     navigationOptions: {
