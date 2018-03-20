@@ -12,16 +12,14 @@ import RN, {
     View
 } from 'react-native';
 
-const styles = {
-    viewPager: {
-        flex: 1
-    },
-    pageStyle: {
-        alignItems: 'center',
-        padding: 20,
-    }
-};
-
+// 网络错误提示信息
+import NetworkErr from '../component/networkError';
+// 头部导航
+import TopNav from '../component/topNav';
+// loading遮罩
+import FullLoading from '../component/fullLoading';
+// 列表为空
+import Empty from '../component/empty';
 
 export default class Message extends Component {
     constructor (props) {
@@ -44,8 +42,21 @@ export default class Message extends Component {
     render() {
         return (
             <View>
+                <TopNav title={'消息列表'} navigation={this.props.navigation}/>
                 <Button title="Alert" onPress={() => this.alert()} />
+                <NetworkErr/>
             </View>
         );
     }
 }
+
+const styles = {
+    viewPager: {
+        flex: 1
+    },
+    pageStyle: {
+        alignItems: 'center',
+        padding: 20,
+    }
+};
+

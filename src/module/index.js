@@ -18,7 +18,7 @@ import {
 
 // 网络错误提示信息
 import NetworkErr from '../component/networkError';
-
+import NewsList from "./newsList";
 
 // TODO 获取消息
 async function getMsg() {
@@ -150,7 +150,7 @@ class App extends Component {
                 </View>
                 <View style={styles.row}>
                     <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
-                                        onPress={() => this.props.goUrl('Message')}>
+                                        onPress={() => this.props.goUrl('NewsList')}>
                         <View style={styles.columnItem}>
                             <Image source={require('../assets/images/icon-i-9.png')} style={styles.columnIcon} resizeMode="contain"/>
                             <Text style={styles.columnText}>热点信息</Text>
@@ -194,7 +194,7 @@ class App extends Component {
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight activeOpacity={1} underlayColor="#f8f8f8" style={styles.column}
-                                        onPress={() => this.props.goUrl('Message')}>
+                                        onPress={() => this.props.goUrl('EventList')}>
                         <View style={styles.columnItem}>
                             <Image source={require('../assets/images/icon-i-15.png')} style={styles.columnIcon} resizeMode="contain"/>
                             <Text style={styles.columnText}>事件管理</Text>

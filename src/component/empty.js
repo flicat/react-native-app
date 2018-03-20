@@ -24,7 +24,7 @@ export default class Empty extends Component {
                 <ImageBackground style={styles.emptyBg} source={require('../assets/images/bg-empty.png')}>
                     <View style={styles.emptyBg}/>
                 </ImageBackground>
-                <Text>暂无相关数据</Text>
+                <Text style={styles.emptyText}>暂无相关数据</Text>
             </View>
         );
     }
@@ -34,10 +34,16 @@ const styles = StyleSheet.create({
     wrap: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: getHeight(200)
     },
     emptyBg: {
         width: getWidth(430),
         height: getWidth(421)
+    },
+    emptyText: {
+        marginTop: getWidth(36),
+        fontSize: getWidth(36),
+        color: '#333'
     }
 });

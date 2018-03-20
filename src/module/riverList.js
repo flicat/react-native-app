@@ -444,84 +444,84 @@ class List extends Component {
 
     render() {
         return (
-            !this.state.isReady ?
-                <FullLoading/> :
-                this.state.list && this.state.list.length ?
-                    <SectionList
-                        initialNumToRender={10}
-                        sections={[{data: this.state.list}]}
-                        keyExtractor={item => item.id}
-                        renderItem={({item}) => (
+            <View>
+                <SectionList
+                    initialNumToRender={10}
+                    ListEmptyComponent={Empty}
+                    sections={[{data: this.state.list}]}
+                    keyExtractor={item => item.id}
+                    renderItem={({item}) => (
 
-                            item.sub && item.sub.length ?
-                                <View>
-                                    <ImageBackground
-                                        style={styles.riverIconWrap}
-                                        source={this.state.openTag[item.id] ? require('../assets/images/icon-reduce.png') : require('../assets/images/icon-plus.png')}>
-                                        <View style={styles.riverIcon}/>
-                                    </ImageBackground>
-                                    <TouchableOpacity activeOpacity={1} onPress={() => this.toggleItem(item.id)}>
-                                        <View style={styles.riverItem}>
-                                            <View style={{flex: 1}}>
-                                                <Text style={styles.riverName}>{item.name}</Text>
-                                                {
-                                                    item.riverer &&
-                                                    <Text style={styles.riverer}>
-                                                        <Text>{item.riverer.name}</Text>
-                                                        {item.riverer.title.map(title => <Text ket={title}>
-                                                            | {title}</Text>)}
-                                                    </Text>
-                                                }
-                                            </View>
-                                            <TouchableOpacity activeOpacity={1} onPress={() => this.goInfo(item.id)}>
-                                                <Text style={styles.listItemBtn}>详情</Text>
-                                            </TouchableOpacity>
-                                        </View>
-                                    </TouchableOpacity>
-                                    <View>
-                                        {
-                                            this.state.openTag[item.id] &&
-                                            item.sub.map(item => (
-                                                <TouchableOpacity key={item.id} activeOpacity={1}
-                                                                  onPress={() => this.goInfo(item.id)}>
-                                                    <View style={styles.riverItem}>
-                                                        <View>
-                                                            <Text style={styles.riverName}>{item.name}</Text>
-                                                            {
-                                                                item.riverer &&
-                                                                <Text style={styles.riverer}>
-                                                                    <Text>{item.riverer.name}</Text>
-                                                                    {item.riverer.title.map(title => <Text key={title}>
-                                                                        | {title}</Text>)}
-                                                                </Text>
-                                                            }
-                                                        </View>
-                                                        <Text style={styles.listItemBtn}>详情</Text>
-                                                    </View>
-                                                </TouchableOpacity>))
-                                        }
-                                    </View>
-                                </View> :
-                                <TouchableOpacity activeOpacity={1}>
+                        item.sub && item.sub.length ?
+                            <View>
+                                <ImageBackground
+                                    style={styles.riverIconWrap}
+                                    source={this.state.openTag[item.id] ? require('../assets/images/icon-reduce.png') : require('../assets/images/icon-plus.png')}>
+                                    <View style={styles.riverIcon}/>
+                                </ImageBackground>
+                                <TouchableOpacity activeOpacity={1} onPress={() => this.toggleItem(item.id)}>
                                     <View style={styles.riverItem}>
-                                        <View>
+                                        <View style={{flex: 1}}>
                                             <Text style={styles.riverName}>{item.name}</Text>
                                             {
                                                 item.riverer &&
                                                 <Text style={styles.riverer}>
                                                     <Text>{item.riverer.name}</Text>
-                                                    {item.riverer.title.map(title => <Text key={title}>
+                                                    {item.riverer.title.map(title => <Text ket={title}>
                                                         | {title}</Text>)}
                                                 </Text>
                                             }
                                         </View>
-
-                                        <Text style={styles.listItemBtn}>详情</Text>
+                                        <TouchableOpacity activeOpacity={1} onPress={() => this.goInfo(item.id)}>
+                                            <Text style={styles.listItemBtn}>详情</Text>
+                                        </TouchableOpacity>
                                     </View>
                                 </TouchableOpacity>
+                                <View>
+                                    {
+                                        this.state.openTag[item.id] &&
+                                        item.sub.map(item => (
+                                            <TouchableOpacity key={item.id} activeOpacity={1}
+                                                              onPress={() => this.goInfo(item.id)}>
+                                                <View style={styles.riverItem}>
+                                                    <View>
+                                                        <Text style={styles.riverName}>{item.name}</Text>
+                                                        {
+                                                            item.riverer &&
+                                                            <Text style={styles.riverer}>
+                                                                <Text>{item.riverer.name}</Text>
+                                                                {item.riverer.title.map(title => <Text key={title}>
+                                                                    | {title}</Text>)}
+                                                            </Text>
+                                                        }
+                                                    </View>
+                                                    <Text style={styles.listItemBtn}>详情</Text>
+                                                </View>
+                                            </TouchableOpacity>))
+                                    }
+                                </View>
+                            </View> :
+                            <TouchableOpacity activeOpacity={1}>
+                                <View style={styles.riverItem}>
+                                    <View>
+                                        <Text style={styles.riverName}>{item.name}</Text>
+                                        {
+                                            item.riverer &&
+                                            <Text style={styles.riverer}>
+                                                <Text>{item.riverer.name}</Text>
+                                                {item.riverer.title.map(title => <Text key={title}>
+                                                    | {title}</Text>)}
+                                            </Text>
+                                        }
+                                    </View>
 
-                        )}/> :
-                    <Empty/>
+                                    <Text style={styles.listItemBtn}>详情</Text>
+                                </View>
+                            </TouchableOpacity>
+
+                    )}/>
+                <FullLoading visible={!this.state.isReady}/>
+            </View>
         )
     }
 }

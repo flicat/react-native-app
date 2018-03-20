@@ -13,6 +13,10 @@ import Index from './src/module/index';
 import Message from './src/module/message';
 import RiverList from './src/module/riverList';
 import RiverInfo from './src/module/riverInfo';
+import EventList from './src/module/eventList';
+import NewsList from './src/module/newsList';
+import EventInfo from './src/module/eventInfo';
+import NewsInfo from './src/module/newsInfo';
 
 export default StackNavigator({
 
@@ -22,10 +26,14 @@ export default StackNavigator({
     Index: { screen: Index },
     Message: { screen: Message },
     RiverList: { screen: RiverList },
-    RiverInfo: { screen: RiverInfo }
+    RiverInfo: { screen: RiverInfo },
+    EventList: { screen: EventList },
+    EventInfo: { screen: EventInfo },
+    NewsList: { screen: NewsList },
+    NewsInfo: { screen: NewsInfo }
 
 }, {
-    initialRouteName: 'Start',         // 默认路由
+    initialRouteName: 'Index',         // 默认路由
     headerMode: 'none',                // 隐藏头部
     mode: 'modal',                     // 动画效果
     navigationOptions: {

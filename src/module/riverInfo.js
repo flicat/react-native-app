@@ -18,6 +18,7 @@ import {
     ImageBackground,
     SegmentedControlIOS,
     TouchableOpacity,
+    WebView,
     TouchableWithoutFeedback
 } from 'react-native';
 
@@ -27,6 +28,8 @@ import NetworkErr from '../component/networkError';
 import TopNav from '../component/topNav';
 // loading遮罩
 import FullLoading from '../component/fullLoading';
+// 列表为空
+import Empty from '../component/empty';
 
 
 // TODO 获取河流信息
@@ -39,13 +42,128 @@ async function getInfo(param) {
 }
 
 
-// TODO 获取信息公开
-async function getMessage() {
+// TODO 获取事件列表
+async function getEventList() {
     await new Promise(function (resolve, reject) {
         setTimeout(() => resolve(true), 1000);
     });
 
-    return {};
+    return [{
+        "photo": "http://img.ivsky.com/img/tupian/pre/201711/22/xingkong.jpg",
+        "title": "东源县支流",
+        "decs": "河面水颜色变换，初步认定水污染严重，河面水颜色变色变换，初步认定水污色变换，初步认定水污色变换，初步认定水污换。",
+        "date": 1519977817063,
+        "location": "东源县",
+        "state": 1,
+        "type": 1,
+        "id": 1
+    }, {
+        "photo": "http://img.ivsky.com/img/tupian/pre/201711/22/xingkong.jpg",
+        "title": "东源县支流",
+        "decs": "河面水颜色变换，初步认定水污染严重，河面水颜色变色变换，初步认定水污色变换，初步认定水污色变换，初步认定水污换。",
+        "date": 1519977817063,
+        "location": "东源县",
+        "state": 0,
+        "type": 1,
+        "id": 2
+    }, {
+        "photo": "http://img.ivsky.com/img/tupian/pre/201711/22/xingkong.jpg",
+        "title": "东源县支流",
+        "decs": "河面水颜色变换，初步认定水污染严重，河面水颜色变色变换，初步认定水污色变换，初步认定水污色变换，初步认定水污换。",
+        "date": 1519977817063,
+        "location": "东源县",
+        "state": 0,
+        "type": 0,
+        "id": 3
+    }, {
+        "photo": "http://img.ivsky.com/img/tupian/pre/201711/22/xingkong.jpg",
+        "title": "东源县支流",
+        "decs": "河面水颜色变换，初步认定水污染严重，河面水颜色变色变换，初步认定水污色变换，初步认定水污色变换，初步认定水污换。",
+        "date": 1519977817063,
+        "location": "东源县",
+        "state": 1,
+        "type": 2,
+        "id": 4
+    }, {
+        "photo": "http://img.ivsky.com/img/tupian/pre/201711/22/xingkong.jpg",
+        "title": "东源县支流",
+        "decs": "河面水颜色变换，初步认定水污染严重，河面水颜色变色变换，初步认定水污色变换，初步认定水污色变换，初步认定水污换。",
+        "date": 1519977817063,
+        "location": "东源县",
+        "state": 0,
+        "type": 1,
+        "id": 5
+    }, {
+        "photo": "http://img.ivsky.com/img/tupian/pre/201711/22/xingkong.jpg",
+        "title": "东源县支流",
+        "decs": "河面水颜色变换，初步认定水污染严重，河面水颜色变色变换，初步认定水污色变换，初步认定水污色变换，初步认定水污换。",
+        "date": 1519977817063,
+        "location": "东源县",
+        "state": 0,
+        "type": 2,
+        "id": 6
+    }, {
+        "photo": "http://img.ivsky.com/img/tupian/pre/201711/22/xingkong.jpg",
+        "title": "东源县支流",
+        "decs": "河面水颜色变换，初步认定水污染严重，河面水颜色变色变换，初步认定水污色变换，初步认定水污色变换，初步认定水污换。",
+        "date": 1519977817063,
+        "location": "东源县",
+        "state": 0,
+        "type": 1,
+        "id": 7
+    }, {
+        "photo": "http://img.ivsky.com/img/tupian/pre/201711/22/xingkong.jpg",
+        "title": "东源县支流",
+        "decs": "河面水颜色变换，初步认定水污染严重，河面水颜色变色变换，初步认定水污色变换，初步认定水污色变换，初步认定水污换。",
+        "date": 1519977817063,
+        "location": "东源县",
+        "state": 1,
+        "type": 3,
+        "id": 8
+    }, {
+        "photo": "http://img.ivsky.com/img/tupian/pre/201711/22/xingkong.jpg",
+        "title": "东源县支流",
+        "decs": "河面水颜色变换，初步认定水污染严重，河面水颜色变色变换，初步认定水污色变换，初步认定水污色变换，初步认定水污换。",
+        "date": 1519977817063,
+        "location": "东源县",
+        "state": 1,
+        "type": 3,
+        "id": 9
+    }, {
+        "photo": "http://img.ivsky.com/img/tupian/pre/201711/22/xingkong.jpg",
+        "title": "东源县支流",
+        "decs": "河面水颜色变换，初步认定水污染严重，河面水颜色变色变换，初步认定水污色变换，初步认定水污色变换，初步认定水污换。",
+        "date": 1519977817063,
+        "location": "东源县",
+        "state": 1,
+        "type": 2,
+        "id": 10
+    }]
+}
+
+// TODO 获取巡河日志
+async function getLogList() {
+    await new Promise(function (resolve, reject) {
+        setTimeout(() => resolve(true), 1000);
+    });
+
+    return [{"id": 1, "name": "河源三江源河段", "date": 1520326376238}, {
+        "id": 2,
+        "name": "河源三江源河段",
+        "date": 1520326376238
+    }, {"id": 3, "name": "河源三江源河段", "date": 1520326376238}, {
+        "id": 4,
+        "name": "河源三江源河段",
+        "date": 1520326376238
+    }, {"id": 5, "name": "河源三江源河段", "date": 1520326376238}, {
+        "id": 6,
+        "name": "河源三江源河段",
+        "date": 1520326376238
+    }, {"id": 7, "name": "河源三江源河段", "date": 1520326376238}, {
+        "id": 8,
+        "name": "河源三江源河段",
+        "date": 1520326376238
+    }, {"id": 9, "name": "河源三江源河段", "date": 1520326376238}, {"id": 10, "name": "河源三江源河段", "date": 1520326376238}];
 }
 
 
@@ -58,6 +176,32 @@ async function getArticle() {
     return {};
 }
 
+
+// 获取时间字符串
+function getDateFromStamp(stamp = Date.now(), format = 'Y-M-D') {
+    let date = new Date(stamp),
+        year = date.getFullYear(),
+        month = date.getMonth() + 1,
+        day = date.getDate(),
+        hour = date.getHours(),
+        minute = date.getMinutes(),
+        second = date.getSeconds();
+
+    let paddingStart = function (str) {
+        str = String(str);
+        if (str.length < 2) {
+            return '0' + str;
+        }
+        return str;
+    };
+
+    return format.replace(/Y+/g, paddingStart(year))
+        .replace(/M+/g, paddingStart(month))
+        .replace(/D+/g, paddingStart(day))
+        .replace(/H+/g, paddingStart(hour))
+        .replace(/I+/g, paddingStart(minute))
+        .replace(/S+/g, paddingStart(second));
+}
 
 // 头部选项卡
 class TopTab extends Component {
@@ -155,7 +299,8 @@ class River extends Component {
                     </View>
                     <View style={styles.riverRow}>
                         <Text style={styles.infoTitle}>河长职责：</Text>
-                        <Text style={styles.infoText}>各级河长负责牵头阻止展开包干河道水质和污染源现状调查，制定水环境治理实施方案，推动重点工程项目落实，协调解决重点难点问题，确保完成任务。</Text>
+                        <Text
+                            style={styles.infoText}>各级河长负责牵头阻止展开包干河道水质和污染源现状调查，制定水环境治理实施方案，推动重点工程项目落实，协调解决重点难点问题，确保完成任务。</Text>
                     </View>
                     <View style={styles.riverRow}>
                         <Text style={styles.infoTitle}>整治目标：</Text>
@@ -374,37 +519,153 @@ class Base extends Component {
 
 // 事件列表
 class EventList extends Component {
-     constructor(props) {
+    constructor(props) {
         super(props);
 
         this.state = {
-            data: [
-                {
-                    
-                }
-            ]
+            data: null,
+            isReady: false
         };
     }
 
-    render() {
-        return (
-            <FlatList>
-                
-            </FlatList>
-        )
+    componentDidMount() {
+        getEventList().then(data => {
+            this.setState({
+                data,
+                isReady: true
+            })
+        });
     }
-}
 
-// 巡河日志
-class logList extends Component {
-    constructor(props) {
-        super(props);
+    goEventInfo(id) {
+        this.props.navigation.navigate('EventInfo', {id});
     }
 
     render() {
         return (
             <View>
+                <FlatList
+                    style={{paddingHorizontal: getWidth(30)}}
+                    data={this.state.data}
+                    ListEmptyComponent={Empty}
+                    keyExtractor={item => item.id}
+                    ItemSeparatorComponent={({highlighted}) => (
+                        <View style={{borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: '#ddd'}}/>
+                    )}
+                    renderItem={({item}) => {
+                        return (
+                            <TouchableWithoutFeedback onPress={() => this.goEventInfo(item.id)}>
+                                <View style={styles.eventItem}>
+                                    <View style={styles.eventPhoto}>
+                                        <Image
+                                            source={{uri: item.photo}}
+                                            style={styles.eventPhoto} resizeMode="cover"/>
+                                        {item.type === 1 && <Image style={styles.eventType}
+                                                                   source={require('../assets/images/icon-event-1.png')}
+                                                                   resizeMode="contain"/>}
+                                        {item.type === 2 && <Image style={styles.eventType}
+                                                                   source={require('../assets/images/icon-event-2.png')}
+                                                                   resizeMode="contain"/>}
+                                        {item.type === 3 && <Image style={styles.eventType}
+                                                                   source={require('../assets/images/icon-event-3.png')}
+                                                                   resizeMode="contain"/>}
+                                    </View>
 
+                                    <View style={styles.eventRight}>
+                                        <Text style={styles.eventTitle}>{item.title}</Text>
+                                        <Text style={styles.eventDecs}>{item.decs}</Text>
+                                        <View style={styles.eventBottom}>
+                                            <Text
+                                                style={styles.eventText}>{getDateFromStamp(item.date, 'Y-M-D H:I')}</Text>
+                                            <Text style={styles.eventText}>所属区县：<Text
+                                                style={[styles.eventText, styles.eventEm]}>{item.location}</Text></Text>
+                                        </View>
+                                        {item.state === 0 && <Image style={styles.eventState}
+                                                                    source={require('../assets/images/icon-state-active.png')}
+                                                                    resizeMode="contain"/>}
+                                        {item.state === 1 && <Image style={styles.eventState}
+                                                                    source={require('../assets/images/icon-state-done.png')}
+                                                                    resizeMode="contain"/>}
+                                    </View>
+                                </View>
+                            </TouchableWithoutFeedback>
+                        )
+                    }}
+                />
+                <FullLoading visible={!this.state.isReady}/>
+            </View>
+        )
+    }
+}
+
+// 巡河日志
+class LogList extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            data: null,
+            isReady: false,
+            dateRange: 'week'       // week 本周 month 本月
+        };
+    }
+
+    componentDidMount() {
+        getLogList().then(data => {
+            this.setState({
+                data,
+                isReady: true
+            })
+        });
+    }
+
+    setSelectRange(range) {
+        this.setState({
+            dateRange: range
+        })
+    }
+
+    goLogInfo(id) {
+        // this.props.navigation.navigate('LogInfo', {id});
+    }
+
+    render() {
+        return (
+            <View>
+                <View style={styles.dateSelector}>
+                    <TouchableOpacity activeOpacity={1} onPress={() => this.setSelectRange('week')}>
+                        <Text
+                            style={[styles.selectItem, this.state.dateRange === 'week' ? styles.selectItemActive : {}]}>本周</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={1} onPress={() => this.setSelectRange('month')}>
+                        <Text
+                            style={[styles.selectItem, this.state.dateRange === 'month' ? styles.selectItemActive : {}]}>本月</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.rowHead}>
+                    <Text style={[styles.rowText, styles.rowTitle]}>巡查河段</Text>
+                    <Text style={[styles.rowText, styles.rowDate]}>巡查日期</Text>
+                </View>
+                <FlatList
+                    data={this.state.data}
+                    ListEmptyComponent={Empty}
+                    keyExtractor={item => item.id}
+                    ItemSeparatorComponent={({highlighted}) => (
+                        <View style={{borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: '#ddd'}}/>
+                    )}
+                    renderItem={({item}) => {
+                        return (
+                            <TouchableWithoutFeedback onPress={() => this.goLogInfo(item.id)}>
+                                <View style={[styles.rowHead, styles.rowItemHead]}>
+                                    <Text style={[styles.rowText, styles.rowItemTitle]}>{item.name}</Text>
+                                    <Text
+                                        style={[styles.rowText, styles.rowItemDate]}>{getDateFromStamp(item.date, 'Y-M-D H:I')}</Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                        )
+                    }}
+                />
+                <FullLoading visible={!this.state.isReady}/>
             </View>
         )
     }
@@ -417,28 +678,50 @@ class Info extends Component {
         super(props);
 
         this.state = {
-            tab: 'event'  // event  log
+            tab: 'event',  // event  log
+            translateValue: new Animated.Value(getWidth(186))
         };
+
     }
 
-    switchTab (tab) {
+    switchTab(tab) {
+        Animated.timing(this.state.translateValue, {
+            toValue: tab === 'log' ? getWidth(726) : getWidth(186),
+            duration: 100,
+            easing: Easing.linear,// 线性的渐变函数
+        }).start();
+
         this.setState({tab});
     }
 
     render() {
         return (
-            <View>
-                <Text>
+            <View style={styles.tabWrap}>
+                <View style={styles.tabTitle}>
                     <TouchableWithoutFeedback onPress={() => this.switchTab('event')}>
-                        <Text>事件列表</Text>
+                        <View style={styles.tabItem}>
+                            <Text
+                                style={this.state.tab === 'event' ? styles.tabCurrentText : styles.tabText}>事件列表</Text>
+                        </View>
                     </TouchableWithoutFeedback>
                     <TouchableWithoutFeedback onPress={() => this.switchTab('log')}>
-                        <Text>巡河日志</Text>
+                        <View style={styles.tabItem}>
+                            <Text style={this.state.tab === 'log' ? styles.tabCurrentText : styles.tabText}>巡河日志</Text>
+                        </View>
                     </TouchableWithoutFeedback>
-                </Text>
+                    <Animated.View style={{
+                        position: 'absolute',
+                        left: 0,
+                        top: getWidth(100),
+                        width: getWidth(168),
+                        borderBottomWidth: 2,
+                        borderBottomColor: '#219ef7',
+                        transform: [{translateX: this.state.translateValue}]
+                    }}/>
+                </View>
 
-                {this.state.tab === 'event' && <EventList/>}
-                {this.state.tab === 'log' && <logList/>}
+                {this.state.tab === 'event' && <EventList navigation={this.props.navigation}/>}
+                {this.state.tab === 'log' && <LogList navigation={this.props.navigation}/>}
 
             </View>
         )
@@ -449,13 +732,33 @@ class Info extends Component {
 class Article extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            html: `<!DOCTYPE html>
+                    <html>
+                    <head>
+                        <meta charset="utf-8">
+                        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+                        <title>清新河长制</title>
+                    </head>
+                    <body>
+                    <p style="font-size: 14px;">Here I am</p>
+                    </body>
+                    </html>`
+        };
     }
 
     render() {
         return (
             <ScrollView style={styles.tabWrap}>
                 <View>
-                    <Text>一河一策</Text>
+                    <WebView
+                        contentInset={{top: 0, left: 0, bottom: 0, right: 0}}
+                        scalesPageToFit={true}
+                        scrollEnabled={true}
+                        bounces={true}
+                        source={{html: this.state.html}}
+                        style={{width: getWidth(1080), height: getHeight(1920)}}/>
                 </View>
             </ScrollView>
         )
@@ -484,7 +787,7 @@ export default class RiverInfo extends Component {
                 <TopNav title={'河道详情'} navigation={this.props.navigation}/>
                 <TopTab setTab={this.setTab}/>
                 {this.state.tab === 'base' && <Base/>}
-                {this.state.tab === 'info' && <Info/>}
+                {this.state.tab === 'info' && <Info navigation={this.props.navigation}/>}
                 {this.state.tab === 'article' && <Article/>}
                 <NetworkErr/>
             </View>
@@ -510,7 +813,33 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff'
     },
-
+    tabTitle: {
+        width: getWidth(1080),
+        height: getWidth(108),
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+    },
+    tabItem: {
+        width: getWidth(1080 / 2),
+        height: getWidth(60),
+        marginVertical: getWidth(24),
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRightWidth: 1,
+        borderRightColor: '#eee',
+        overflow: 'hidden',
+    },
+    tabCurrentText: {
+        fontSize: getWidth(38),
+        textAlign: 'center',
+        color: '#333',
+    },
+    tabText: {
+        fontSize: getWidth(38),
+        textAlign: 'center',
+        color: '#a6a6a6',
+    },
     mapWrap: {
         width: getWidth(1080),
         height: getWidth(1168),
@@ -647,4 +976,114 @@ const styles = StyleSheet.create({
         color: '#219ef7',
     },
 
+
+    eventItem: {
+        paddingVertical: getWidth(40),
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        justifyContent: 'space-between',
+    },
+    eventPhoto: {
+        width: getWidth(284),
+        height: getWidth(213),
+    },
+    eventType: {
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        width: getWidth(88),
+        height: getWidth(90),
+    },
+    eventRight: {
+        width: getWidth(706),
+        height: getWidth(213),
+    },
+    eventTitle: {
+        fontSize: getWidth(36),
+        marginBottom: getWidth(36 / 2),
+        color: '#a6a6a6'
+    },
+    eventDecs: {
+        fontSize: getWidth(30),
+        lineHeight: getWidth(30 * 1.2),
+        height: getWidth(30 * 1.2 * 3),
+        overflow: 'hidden',
+        color: '#333'
+    },
+    eventBottom: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    eventText: {
+        fontSize: getWidth(30),
+        lineHeight: getWidth(30 * 2),
+        color: '#a6a6a6'
+    },
+    eventEm: {
+        color: '#219ef7'
+    },
+    eventState: {
+        position: 'absolute',
+        right: 0,
+        top: getWidth(-20),
+        width: getWidth(122),
+        height: getWidth(71),
+    },
+
+    dateSelector: {
+        paddingTop: getWidth(31),
+        paddingBottom: getWidth(26),
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    selectItem: {
+        paddingHorizontal: getWidth(30),
+        height: getWidth(62),
+        fontSize: getWidth(36),
+        lineHeight: getWidth(62),
+        color: '#a6a6a6',
+        textAlign: 'center'
+    },
+    selectItemActive: {
+        color: '#fff',
+        backgroundColor: '#219ef7',
+    },
+    rowHead: {
+        paddingHorizontal: getWidth(30),
+        height: getWidth(103),
+        backgroundColor: '#ecf4f9',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    rowItemHead: {
+        backgroundColor: '#fff',
+    },
+    rowText: {
+        height: getWidth(103),
+        lineHeight: getWidth(103),
+        color: '#666',
+    },
+    rowTitle: {
+        width: getWidth(460),
+        textAlign: 'center',
+        fontSize: getWidth(36),
+    },
+    rowDate: {
+        width: getWidth(430),
+        fontSize: getWidth(36),
+    },
+    rowItemTitle: {
+        width: getWidth(460),
+        fontSize: getWidth(34),
+        color: '#219ef7',
+        textAlign: 'center',
+    },
+    rowItemDate: {
+        width: getWidth(495),
+        fontSize: getWidth(34),
+        color: '#999',
+    },
 });
